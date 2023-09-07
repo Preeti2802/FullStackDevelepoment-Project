@@ -8,9 +8,16 @@ Add ur necessary docs in git cloned folder
 npree@npreeti MINGW64 /e/7thSem/FSD/Project/FullStackDevelepoment-Project (main)
 #Main is the branch which we r gonna push
 
+$ git add .
+THis is to push the file from local system to git
+
 $ git status
 The file which wanna add is in our git(Local) needs to be added on github
 
 
 Now we need to authenticate it
+$ git config --global user.mail preeti_n28@yahoo.com
+$ git commit -m "main:FSD_Project"
+
+
 
