@@ -14,10 +14,12 @@ THis is to push the file from local system to git
 $ git status
 The file which wanna add is in our git(Local) needs to be added on github
 
-
 Now we need to authenticate it
 $ git config --global user.mail preeti_n28@yahoo.com
 $ git commit -m "main:FSD_Project"
+
+Now we r gonna push our respective branch
+$ git push -u origin main
 
 
 
