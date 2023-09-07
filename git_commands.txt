@@ -1,0 +1,16 @@
+$ git --version
+$ git config --global user.username Preeti2802
+$ git config --global --list
+$ cd "D:\5. BTech AI\6th sem\6th_RL"
+$ git clone https://github.com/Preeti2802/FullStackDevelepoment-Project.git
+
+Add ur necessary docs in git cloned folder
+npree@npreeti MINGW64 /e/7thSem/FSD/Project/FullStackDevelepoment-Project (main)
+#Main is the branch which we r gonna push
+
+$ git status
+The file which wanna add is in our git(Local) needs to be added on github
+
+
+Now we need to authenticate it
+
