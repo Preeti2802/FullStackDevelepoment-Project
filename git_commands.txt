@@ -31,7 +31,12 @@ C:\Program Files\Git\bin added in environment variables path
 To commit changes in VS
 In VS open the vs terminal( ctrl + ~)
 - git status
-we can add git add .
-and commit chnages
-and git stash
+- git stash
+- git pull origin main
+- git stash pop
+- git add .
+Go to source control sync the changes
+Accept the chnages which u want
+- git commit -m "main:Updated_commands"
+
 
