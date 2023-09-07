@@ -15,7 +15,7 @@ $ git status
 The file which wanna add is in our git(Local) needs to be added on github
 
 Now we need to authenticate it
-$ git config --global user.mail preeti_n28@yahoo.com
+$ git config --global user.email preeti_n28@yahoo.com
 $ git commit -m "main:FSD_Project"
 
 Now we r gonna push our respective branch
@@ -35,8 +35,9 @@ In VS open the vs terminal( ctrl + ~)
 - git pull origin main
 - git stash pop
 - git add .
-Go to source control sync the changes
-Accept the chnages which u want
 - git commit -m "main:Updated_commands"
+
+Go to source control sync the changes
+Accept the changes which u want
 
 
