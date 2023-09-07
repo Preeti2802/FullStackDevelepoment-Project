@@ -21,5 +21,5 @@ $ git commit -m "main:FSD_Project"
 Now we r gonna push our respective branch
 $ git push -u origin main
 
-
+To commit changes
 
