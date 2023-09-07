@@ -21,5 +21,17 @@ $ git commit -m "main:FSD_Project"
 Now we r gonna push our respective branch
 $ git push -u origin main
 
+To commit changes
+edit and click on commit chages
+We can click on the commit column and look for changes
 
+
+To add local system changes
+C:\Program Files\Git\bin added in environment variables path
+To commit changes in VS
+In VS open the vs terminal( ctrl + ~)
+- git status
+we can add git add .
+and commit chnages
+and git stash
 
