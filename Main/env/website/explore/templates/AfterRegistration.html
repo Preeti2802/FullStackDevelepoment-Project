@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyPortal</title>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'logo.png' %}" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+header{
+    height: 100px;
+    background: white;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 100px;
+    padding-left: 100px;
+
+
+}
+ul{
+    display:flex;
+    list-style-type: none;
+    align-items: center;
+
+}
+
+ul li a{
+    padding:0 30px;
+    text-decoration: none;
+    font-size: 20px;
+    color:rgb(14, 24, 210) ;
+    display: inline-block ;
+
+}
+
+li a::after{
+    content: '';
+    display: block;
+    height: 4px;
+    width: 0;
+    background: rgb(9, 64, 216);
+    transition: all .5s
+
+}
+
+li a:hover::after{
+    width: 100%;
+}
+
+main{
+    display: flex;
+    border:2px solid rgb(143, 185, 197);
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    height: calc(100vh - 100px);
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 100px;
+    padding-left: 100px;
+
+}
+
+
+
+.hero_img{
+    max-width: 650px;
+    height: auto;
+}
+
+.content_left{
+    width:50%
+}
+.content_right{
+    width:47%
+}
+
+
+main2{
+    display: flex;
+
+    height: 700px;
+    justify-content: space-between;
+    padding-right: 100px;
+    padding-left: 100px;
+
+}
+
+
+
+main h1{
+    font-size: 54px;
+    color: rgb(9, 37, 216);
+    text-transform: uppercase;
+}
+
+main h2{
+    font-size: 25px;
+    color: rgb(9, 61, 216);
+    font-weight: 400;
+    text-transform: uppercase;  
+    letter-spacing: 8px;
+}
+
+
+
+main2 h2{
+    padding-top: 20px;
+    font-size: 50px;
+    color: rgb(9, 61, 216);
+    font-weight: 400;
+    text-transform: uppercase;  
+    letter-spacing: 8px;
+}
+
+main p{
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+    line-height: 31.5px;
+    margin:40px 0 ;
+
+}
+main2 p{
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+    line-height: 31.5px;
+    margin:40px 0 ;
+
+}
+
+.cta{
+    padding: 15px 30px;
+    background: rgb(9, 44, 216);
+    color:#fff;
+    outline: none;
+    border: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 50px;
+    text-decoration: none;
+}
+
+.signup_btn{
+    padding: 5px 10px;
+    background: Cornflower rgb(0, 119, 255);
+    color:#fff;
+    outline: none;
+    border: none;
+    font-weight: 700;
+    border-radius: 20px;
+
+}
+    /* Add your custom styles for the modal here */
+    #myModal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px; /* Set your desired maximum width */
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #myModal form {
+        /* Add these styles to adjust the width of the text boxes */
+        width: 100%;
+        max-width: 400px; /* Set your desired maximum width */
+    }
+    
+    #myModal form input[type="text"],
+    #myModal form input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+/* Add this at the end of your existing CSS file */
+/* Add this at the end of your existing CSS file */
+.blur-effect {
+    filter: blur(5px);
+}
+
+footer {
+    background-color: rgba(0,0,200);  /* Dark background for contrast */
+    color: white;            /* White text color */
+    text-align: center;      /* Center align the text */
+    padding: 4px 0;         /* Some padding for spacing */
+    position: fixed;         /* Fixed position */
+    left: 0;                 /* Align to the left */
+    bottom: 0;               /* Position at the bottom */
+    width: 100%;             /* Full width */
+    font-size: 14px;         /* Adjust font size as needed */
+}
+
+.main2 {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    justify-content: flex-start; /* Align children to the start vertically */
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+
+.main2 .explore-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px; /* Spacing between sections */
+}
+
+.main2 .explore-image, .main2 .explore-text {
+    flex: 1;
+    max-width: 50%; /* Adjust the width as necessary */
+}
+
+.main2 .explore-img {
+    width: 100%; /* Ensures the image is responsive within its container */
+    height: auto; /* Maintains aspect ratio */
+}
+
+@media (max-width: 768px) {
+    .explore-container {
+        flex-direction: column;
+        align-items: flex-start; /* Align items to the start of the cross axis on smaller screens */
+    }
+
+    .explore-image, .explore-text {
+        flex: 0 0 100%; /* On smaller screens, they take full width */
+    }
+
+    .explore-img {
+        max-width: 100%; /* Image will take up the full width on small screens */
+    }
+}
+
+    </style>
+
+</head>
+<body>
+    <footer>
+        <p>&copy; 2023 StudyPortal. All rights reserved.</p>
+    </footer>
+    <div class="container">
+        <header>
+            <div class="logo">
+                {% load static %}
+                <img src= "{%static 'logo.png'%}" alt="Logo" width="100px">
+            </div>
+            <nav>
+                <ul>
+                    
+                    <li><a href='{% url "explore" %}'>Explore</a></li>    
+                    <li onclick="scrollToSection('about-us-section')"><a href='#'>AboutUS</a></li>
+                    <li id="userWelcome"></li>
+                   
+                        {% if request.COOKIES.username %}
+                        <p style="font-size: 20px; color: rgb(9, 64, 216);">Welcome, {{ request.COOKIES.username }}</p>
+                        {% endif %}
+                    
+                    
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="content_left">
+                <h1 >Studysync</h1>
+                <h2>Learn. Achieve. Repeat.</h2>
+                <p>
+                    Explore tailored courses effortlessly on StudySync. Find your path, fueled by your interests, with intelligent suggestions. Your academic journey begins here – discover, engage, excel                
+                </p>
+                <a href='/quiz' class="cta" >Take a Quiz</a>
+            </div>
+
+            <div class="content_right">
+                
+                {% load static %}
+                <img src="{%static 'lp1.png'%}"  alt="" class="hero_img"> </a>
+            </div>
+
+
+        </main>
+<div class="main2", id="about-us-section">
+    <!-- First Section -->
+    
+    <div class="explore-container">
+        <div class="explore-image">
+            <img src="{% static 'LE1.jpg' %}" alt="Explore" class="explore-img" style="padding-right: 100px;">
+        </div>
+        <div class="explore-text">
+            <h2 style="padding-left: 100px;font-size: 50px;color: rgb(9, 61, 216);font-weight: 400;text-transform: uppercase; letter-spacing: 8px;">EXPLORE</h2>
+            <p style=" padding-left: 100px;font-size: 16px;font-weight: 400;color: #333;line-height: 31.5px;margin:40px 0">Are you feeling overwhelmed by the multitude of college and course options available? Fear not! Our Explore Section is designed with you in mind, offering a comprehensive and user-friendly platform to navigate the vast landscape of higher education.</p>
+        </div>
+    </div>
+
+    <!-- Second Section -->
+    <div class="explore-container">
+        <div class="explore-text">
+            <h2 style="padding-right: 100px;font-size: 50px;color: rgb(9, 61, 216);font-weight: 400;text-transform: uppercase; letter-spacing: 8px;">QUIZ</h2>
+            <p style=" padding-right: 100px;font-size: 16px;font-weight: 400;color: #333;line-height: 31.5px;margin:40px 0">Feeling stuck in the dilemma of choosing the right course? Worry not! Take this survey to discover the field that aligns with your interests and eases your decision-making process. Let's find the perfect fit for you!</p>
+        </div>
+        <div class="explore-image">
+            <img src="{% static 'LQ1.jpg' %}" alt="New Section" class="explore-img" style="padding-left: 100px;">
+        </div>
+
+    </div>
+</div>
+
+
+    </div>
+    
+
+    <script>
+
+function scrollToSection(sectionId) {
+        var element = document.getElementById(sectionId);
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+        var registeredName = getQueryParameter("name");
+
+        console.log("Registered Name on Second Page:", registeredName);
+        if (registeredName) {
+            var userWelcomeElement = document.getElementById("userWelcome");
+            userWelcomeElement.innerText = "Welcome, " + registeredName + "!";
+            userWelcomeElement.style.fontFamily = "YourCustomFont, sans-serif"; 
+            userWelcomeElement.style.fontSize = "20px"; 
+            userWelcomeElement.style.color = "rgb(9, 44, 216)"; 
+        }
+
+      </script>
+</body>
+</html>

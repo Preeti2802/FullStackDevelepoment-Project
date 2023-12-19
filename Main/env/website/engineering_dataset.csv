@@ -1,0 +1,26 @@
+﻿Do u like software coding?,Do u like probability and statistics?,Do u like hardware programming?,Do u like circuits and its design?,Do u like  communications technologies?,Do u like material sciences?,Do u like manufacturing?,Do you like urban planning and development? ,Do you enjoy studying algorithms and data structures,Do you prefer working on software development over hardware?,Would you like to explore the field of artificial intelligence and machine learning?,Are you interested in signal processing and VLSI systems?,Do you like experimenting with IoT devices?,Are you interested in geotechnical engineering and soil mechanics?,Do you enjoy working on mechanical design and CAD?,Do u want to explore the realm of power system and transmission?,Would you prefer to work on projects related to web development and cyber security?,Preferred_Course
+1,0,0,0,0,0,0,0,1,1,1,0,1,0,0,0,1,CSE
+1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,CSE
+1,0,1,0,1,0,0,0,0,0,0,1,1,0,0,0,0,ECE
+0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,EEE
+1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,AI
+0,0,0,0,0,1,1,0,0,0,1,0,0,0,1,0,0,ME
+0,0,0,0,0,1,0,1,0,0,0,0,0,1,0,0,0,Civil
+0,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,AI
+0,0,1,0,1,0,0,0,0,0,0,1,0,0,0,0,0,ECE
+0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,AI
+0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,EEE
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,ME
+0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,ME
+0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,ME
+0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,ME
+0,0,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,Civil
+0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,Civil
+0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,Civil
+1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,CSE
+1,0,1,0,0,0,0,0,0,1,0,0,1,0,0,0,1,CSE
+1,0,1,0,0,0,0,0,0,1,0,1,1,0,0,0,0,ECE
+0,0,1,0,1,0,0,0,0,0,0,1,1,0,0,0,0,ECE
+0,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,AI
+1,1,0,0,0,0,0,0,1,1,1,0,1,0,0,0,0,AI
+0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,EEE

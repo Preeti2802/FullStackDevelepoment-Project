@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jain University-MBA</title>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'logo.png' %}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <style>
+        body {
+            margin: 20px; /* Margin for the entire page */
+        }
+
+        .header-banner {
+            background-image: url('data:image/jpeg;base64,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'); /* Replace with your background image path */
+            background-size: 85%;
+            background-position: 40% 25%;
+            padding: 85px 0; /* Increased padding for a bigger header */
+            position: relative;
+        }
+
+        .header-banner:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+        }
+
+        .college-logo {
+            position: absolute; /* Absolute position */
+            top: 86%; /* Push down to the bottom of the header */
+            left: 20px; /* Slight offset from the left */
+            transform: translateY(-50%); /* Center vertically between sections */
+            width: 120px; /* Fixed width */
+            border-radius: 50%; /* Rounded */
+            overflow: hidden; /* Hide overflow */
+            z-index: 10; /* Above other elements */
+        }
+
+        .college-info {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-items: flex-start; /* Align items to the start of the flex container */
+        }
+
+        .brochure-download-btn-container {
+            margin-left: auto; /* Push the button to the right */
+            align-self: stretch; /* Stretch to take full width of the container */
+            text-align: right; /* Align button text to the right */
+            
+            background-color: #2a28a7; /* Green background */
+            color: white; /* White text */
+            padding: 1em 1.5em; /* Dynamic padding */
+            border: none; /* No border */
+            border-radius: 25px; /* Curved edges */
+            cursor: pointer; /* Pointer cursor on hover */
+         }
+
+        .location {
+            margin-top: 10px; /* Space between college name and location */
+            color: #212529; /* Bootstrap's default color for text */
+        }
+
+        .accreditation-badge-box {
+            background-color: #e0e0e0; /* Light grey background for the accreditation box */
+            padding: 5px 10px; /* Padding inside the box */
+            margin-top: 10px; /* Space above the box */
+            display: flex;
+             /* Align image and text */
+            margin-top: 20px;
+            margin-right: auto;
+        }
+
+        .accreditation-badge-img {
+            height: 20px; /* Adjust the height of the badge image */
+            margin-right: 5px; /* Space between image and text */
+        }
+
+        .flex-container {
+            display: flex;
+            margin-top: 20px; /* Add space between college-info and the new flex boxes */
+        }
+
+        .left-side {
+             /* The left side takes up more space */
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px; /* Space between the left and right side */
+        }
+
+
+        .box {
+            background-color: #f0f0f0; /* Light grey background for visibility */
+            padding: 20px; /* Add some padding inside the boxes */
+            margin-bottom: 10px; /* Add some space between the boxes */
+            border: 1px solid #ccc; /* Add a border for visibility */
+        }
+
+        .box:last-child {
+            margin-bottom: 0; /* Ensuring the last box doesn't have a margin at the bottom */
+        }
+
+        @media (max-width: 768px) {
+            .header-banner, .college-logo, .college-info, .flex-container {
+                padding: 0;
+                margin: 0;
+            }
+
+            .flex-container {
+                flex-direction: column;
+            }
+
+            .left-side, .right-side {
+                flex: none; /* Remove the flex property for mobile */
+                margin-right: 0;
+            }
+
+            .box {
+                margin-bottom: 10px; /* Add space between boxes on mobile */
+            }
+
+            .college-logo {
+                width: 65px; /* Smaller logo on mobile */
+                left: 10px; /* Adjust left position on mobile */
+            }
+
+            .info-wrapper {
+                flex-direction: column; /* Stack elements vertically on smaller screens */
+            }
+        }
+
+        .box_right {
+            margin-top: 10px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            font-size: 16px; /* Increase base font size for all text in the box */
+        }
+
+        .box-heading {
+            font-size: 20px; /* Larger font size for the first line */
+            font-weight: bold; /* Optional: if you want the first line to be bold */
+            margin-bottom: 0.5em; /* Add some spacing below the heading */
+        }
+
+        .box-subheading {
+            font-size: 18px; /* Slightly larger font size for the second line */
+            margin-bottom: 0.5em; /* Add some spacing below the subheading */
+        }
+
+        .box ul {
+            padding-left: 20px; /* Add padding to align list properly */
+        }
+
+        .box li {
+            margin-bottom: 0.25em; /* Add some spacing between list items */
+        }
+
+        .button-container {
+            align-self: flex-end;
+            text-align: right; /* Align the button to the right */
+            padding-right: 20px; /* Add padding to the right to ensure it doesn't stick to the edge */
+            margin-left: auto;
+        }
+
+        .brochure-download-btn {
+            
+            margin-right: auto;
+            
+            color: white; /* White text */
+            padding: 1em 1.5em; /* Dynamic padding */
+            border: none; /* No border */
+            border-radius: 25px; /* Curved edges */
+            font-size: 1em; /* Dynamic font size */
+            cursor: pointer; /* Pointer cursor on hover */
+            display: inline-flex; /* To align icon and text */
+            align-items: center; /* Center items vertically */
+            justify-content: center; /* Center items horizontally */
+            /* Space above the button */
+        }
+
+        .brochure-download-btn i {
+            margin-right: 10px; /* Space between icon and text */
+        }
+
+        /* Adjust button for mobile */
+        @media (max-width: 768px) {
+            .brochure-download-btn {
+                font-size: 0.875em; /* Smaller font size on mobile */
+                padding: 0.8em 1.2em; /* Smaller padding on mobile */
+            }
+        }
+
+        .box {
+    background-color: white; /* Light grey background for visibility */
+    padding: 20px; /* Add some padding inside the boxes */
+    margin-bottom: 4px; /* Add some space between the boxes */
+    border: 3px solid blue; /* Blue border added */
+    border-radius: 20px;
+    border-style: inset;
+}
+
+
+.box_right {
+    margin-top: 10px;
+    background-color: rgb(175, 222, 240);
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 3px solid rgb(76, 76, 161); /* Blue border added */
+    font-size: 16px; /* Increase base font size for all text in the box */
+    border-radius: 20px
+}
+.flex-container1 {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            background-color: #f0f8ff;
+            padding: 5px;
+            margin-left: 5px;
+        }
+        
+    </style>
+</head>
+<body style="margin: 30px;">
+
+<div class="header-banner">
+    {% load static %}
+    <img src="{% static 'c8_logo.png' %}" alt="College Logo" class="college-logo">
+</div>
+
+<div class="college-info">
+    <br>
+    <h4 style="color: rgb(17, 17, 196); font-family: 'Arial', sans-serif; font-size: 1.5em; text-align: center;text-align: center; font-family: 'Verdana', sans-serif; font-size: 1.8em; font-weight: bold;">Christ University </h4>
+
+    <div class="location">
+        <span>Jayanagar, Bangalore</span>
+    </div>
+
+    
+</div>
+<div class="flex-container1" style="background-color: white;">
+    <!-- Left Corner -->
+    
+
+    <!-- Right Corner -->
+    <button class="brochure-download-btn-container">
+        <a href="https://bschool.cms.ac.in/MBA/?utm_source=google&utm_medium=search&utm_campaign=MBA_Admission_Search_2024_sou&utm_id=MBA_2024&gad_source=1&gclid=CjwKCAiA-P-rBhBEEiwAQEXhHztxvguyCcae5lJnkvE5cbv8PuieEb34UyJ5DKcIfqgl90uQ0sTcRBoCj9IQAvD_BwE" class="brochure-download-btn" target="_blank">
+        <i class="fas fa-download"></i> Brochure
+        </a>
+    </button>
+</div>
+
+<div class="flex-container">
+    <div class="left-side">
+        <div style="background-color: #f0f8ff; padding: 10px; border-radius: 10px; margin: 10px 0; font-family: 'Open Sans', sans-serif; font-size: 16px; line-height: 1.6; color: #5858ba;font-weight: bold;">
+            
+            As one of the ambitious and leading business schools pan India, this business school places itself unique by making research and innovation at the core of everything. Through ensuring qualitative learning and leadership development, we make students push boundaries and make an impact.
+            This is a Master’s level program, leading to the grant of a degree of Master of Business Administration of JAIN Online, an e-learning arm of JAIN (Deemed-to-be-University). This two-year program offers foundation courses, core courses, electives, and a comprehensive master thesis intermediary apart from an option to pursue a cross-functional and open elective. The core and electives incorporate the AICTE’s model curriculum as prescribed for a full-time online MBA program. The electives have been designed keeping in mind the industry’s requirements. The offering of these electives right from the 2nd semester of the program ensures a deep dive into the electives. The program is designed to provide in-depth knowledge of the chosen electives and their applications in improving business processes and decision-making. Our online MBA curriculum is intended to increase a learner’s business knowledge and leadership skills thus providing a way to accelerate one’s career for corporate roles in management.
+            As building successful partnerships and integrating technology to leadership from the bottom line of our history, we stay on the frontline of delivering solutions to real-life challenges and evolve the way society thinks and works!
+            </div>
+        <div style="font-weight: bold;" class="box">
+            Admission to all the B.Tech Programmes for the year 2024 is based on any one of the following:
+            For MBA 2024 at JAIN (Deemed-to-be University), candidates with the following competitive exam scores / percentile are exempted from the Written Test and can directly appear for Essay Writing, Presentation and Personal Interview.
+
+            Competitive Exam	Minimum Score / Percentile
+            September, December 2023, February, May MAT 2024	Score of 550 and above
+            NMAT 2023-24- Score of 160 and above
+            CAT 2023 - Score of 50 percentile and above
+            GMAT 2023-24 - Score of 50 percentile and above
+            CMAT 2024 - Score of 50 percentile and above
+            XAT 2024 - Score of 50 percentile and above
+
+            <li> Entrance Examination - Engineering 2024</li>
+            <li>Bachelor's degree with a minimum of 50% marks from a recognized institution. Selection process is through Jain Entrance Test (JET) includes:
+
+                •	Written Test
+                •	Essay Writing
+                •	Presentation
+                •	Personal Interview
+        </div>
+        <marquee id="marquee" behavior="scroll" direction="left" style="font-size: 24px; color: #6250ca;font-weight: bold;">ADMISSIONS OPEN FOR 2023-24!!! </marquee>
+
+    </div>
+   
+
+
+ 
+
+</body>
+</html>

@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'logo.png' %}" />
+
+    <style>
+        /* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5; /* Match the background color */
+    margin: 0;
+    padding: 0;
+}
+
+/* Sidebar styles (unchanged) */
+.sidebar {
+    height: 100%;
+    width: 60px;
+    position: fixed;
+    z-index: 1; /* Stay on top */
+    background-color: #211cba;
+    overflow-x: hidden;
+    padding-top: 20px;
+    transition: width 0.3s;
+}
+
+.sidebar:hover {
+    width: 200px;
+}
+
+/* Sidebar tabs */
+.tabs {
+    display: flex;
+    flex-direction: column;
+}
+
+.tab {
+    padding: 20px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    background-color: #211cba;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.tab:hover {
+    background-color: #1a1c76;
+}
+
+/* Content styles */
+.content {
+    margin-left: 60px; /* Set to the initial width of the sidebar */
+    padding: 16px;
+    transition: margin-left 0.3s;
+}
+
+.sidebar:hover ~ .content {
+    margin-left: 250px; /* Adjust to the expanded width of the sidebar on hover */
+}
+
+/* Logo styles */
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    padding: 10px;
+    margin-left: 60px; /* Set to the initial width of the sidebar */
+    
+    
+}
+
+.sidebar:hover ~ .logo-container {
+    margin-left: 250px; /* Adjust to the expanded width of the sidebar on hover */
+}
+
+/* Centered sign-up container */
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+/* Question container styling */
+.question {
+    border: 2px solid #6c63ff;
+    border-radius: 12px;
+    padding: 40px;
+    margin-bottom: 20px;
+    background-color: #f9f7ff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    display: none;
+    transition: opacity 0.3s;
+}
+
+.question.active {
+            display: block;
+        }
+
+
+/* Question label styling */
+.question label {
+    display: block;
+    margin-bottom: 30px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Styling for the select element (dropdown) */
+
+
+/* Button styling */
+button[type="submit"], button[type="button"] {
+    background-color: #2c3f9e;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+   
+    font-size: 16px;
+    
+    cursor: pointer;
+    border-radius: 18px;
+    display: block; /* Center the button in the container */
+    margin: 20px auto;
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #5248e5;
+}
+#q1-container {
+        display: block;
+    }
+    
+    /* Hide other questions */
+    #q2-container, #q3-container, #q4-container, #q5-container, #q6-container, #q7-container, #q8-container, #q9-container, #q10-container, #q11-container, #q12-container, #q13-container, #q14-container, #q15-container, #q16-container, #q17-container {
+        display: none;
+    }
+
+    .questions-container {
+            margin: 50px 350px;
+            width: 50%; /* You can adjust the width as needed */
+            background-color: #fefefe;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Styling for radio options */
+        .radio-group label {
+            margin-bottom: 20px;
+        }
+
+        .heading {
+            font-family: 'Pacifico', cursive; /* Google Font 'Pacifico' */
+            font-size: 28px;
+            color: #6c63ff; /* Heading color */
+            text-align: center;
+            margin-bottom: 3    0px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+        }
+
+
+        .question-transition {
+    animation-name: slideRight;
+    animation-duration: 0.5s;
+}
+        /* Custom radio button styling */
+        .radio-group input[type="radio"] {
+            appearance: none; /* Hide default radio button */
+            background-color: #f0f0f0; /* Unchecked background */
+            border: 2px solid #ddd; /* Unchecked border */
+            border-radius: 50%; /* Circular shape */
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        .radio-group input[type="radio"]:checked {
+            background-color: #6c63ff; /* Checked background */
+            border-color: #6c63ff; /* Checked border */
+            animation: radiate 1s infinite; /* Radiating effect */
+        }
+
+        /* Radiating effect */
+        @keyframes radiate {
+            0% {
+                box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(108, 99, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(108, 99, 255, 0);
+            }
+        }
+
+@keyframes slideRight {
+    from {
+        opacity: 0;
+        transform: translateX(0px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.question {
+    position: relative;
+    /* other styling for question */
+}
+
+
+
+.question-content {
+    position: relative;
+    z-index: 1;
+    /* additional content styling */
+}
+.question {
+    position: relative;
+    border: 2px solid #6c63ff;
+    border-radius: 12px;
+    padding: 40px;
+    margin-bottom: 20px;
+    background-color: #f9f7ff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* To contain the animation within the question box */
+}
+
+.question-image {
+    position: absolute;
+    width: 50px; /* Adjust size as needed */
+    height: auto;
+    animation: tracePerimeter 10s linear infinite;
+}
+
+/*@keyframes tracePerimeter {
+    0%, 100% {
+        top: 0;
+        left: 0;
+    }
+    12.5% {
+        top: 0;
+        left: 50%;
+    }
+    25% {
+        top: 0;
+        left: 100%;
+    }
+    37.5% {
+        top: 50%;
+        left: 100%;
+    }
+    50% {
+        top: 100%;
+        left: 100%;
+    }
+    62.5% {
+        top: 100%;
+        left: 50%;
+    }
+    75% {
+        top: 100%;
+        left: 0;
+    }
+    87.5% {
+        top: 50%;
+        left: 0;
+    }
+}*/
+
+footer {
+    background-color: rgba(0,0,200);  /* Dark background for contrast */
+    color: white;            /* White text color */
+    text-align: center;     /* Some padding for spacing */
+    position: fixed;         /* Fixed position */
+    left: 0;                 /* Align to the left */
+    bottom: 0;               /* Position at the bottom */
+    width: 100%;             /* Full width */
+    font-size: 14px;         /* Adjust font size as needed */
+    width: 1550px;   /* Adjust width as needed */
+    height: 32px; 
+}
+
+
+
+        
+    </style>
+    <title>Quiz Content</title>
+</head>
+<body>
+    <footer>
+        <p>&copy; 2023 StudyPortal. All rights reserved.</p>
+    </footer>
+<div class="sidebar">
+    <div class="tabs">
+        <div class="tab">
+            <a href="/explore" style="display: flex; align-items: center; color: white; text-decoration: none;">
+                {% load static %}
+                <img src="{% static 'e1.png' %}" alt="Explore Icon" style="width: 29px; height: 29px; margin-right: 20px;">
+                Explore
+            </a>
+        </div>
+        
+        <div class="tab" onclick="openTab('tab2')" style="display: flex; align-items: center;">
+            {% load static %}
+            <img src="{% static 'e2.png' %}" alt="Explore Icon" style="width: 29px; height: 29px; margin-right: 20px;">
+            Quiz
+        </div>
+    </div>
+</div>
+
+<div class="logo-container" id="time">
+    {% load static %}
+    <a href="{% url 'AfterRegistration' %}">
+    <img src="{% static 'logo.png' %}" alt="Your Logo" class="logo-img" style="max-width: 100px; height: auto;" >
+</a>
+</div>
+
+<!-- ... (previous code) ... -->
+
+<div class="content">
+    <div id="tab2" class="questions-container">
+        <form method="post" action="{% url 'result' %}">
+            {% csrf_token %}
+            <!-- Add this before the questions container -->
+        <div class="heading">A Quiz to Illuminate Your Future Journey.</div>
+
+            <!-- Updated set of questions -->
+            <div class="question" id="q1-container">
+                <!--<img src="{% static 'logo.png' %}" alt="Image Description" class="question-image">
+                <div class="question-content"> -->
+                    <label>1. Do you like software coding?</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="q1" value="1"> Yes (1)
+                        </label>
+                        <label>
+                            <input type="radio" name="q1" value="0"> No (0)
+                        </label>
+                  <!--  </div> -->
+                </div>
+            </div>
+            
+            
+            <div class="question" id="q2-container">
+                <label>2. Do you like probability and statistics?</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="q2" value="1"> Yes (1)
+                    </label>
+                    <label>
+                        <input type="radio" name="q2" value="0"> No (0)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="question" id="q3-container">
+                <label>3. Do you like hardware programming?</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="q3" value="1"> Yes (1)
+                    </label>
+                    <label>
+                        <input type="radio" name="q3" value="0"> No (0)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="question" id="q4-container">
+                <label>4. Do you like circuits and its design?</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="q4" value="1"> Yes (1)
+                    </label>
+                    <label>
+                        <input type="radio" name="q4" value="0"> No (0)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="question" id="q5-container">
+                <label>5. Do you like communications technologies?</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="q5" value="1"> Yes (1)
+                    </label>
+                    <label>
+                        <input type="radio" name="q5" value="0"> No (0)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="question" id="q6-container">
+                <label>6. Do you like material sciences?</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="q6" value="1"> Yes (1)
+                    </label>
+                    <label>
+                        <input type="radio" name="q6" value="0"> No (0)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="question" id="q7-container">
+                <label>7. Do you like manufacturing?</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="q7" value="1"> Yes (1)
+                    </label>
+                    <label>
+                        <input type="radio" name="q7" value="0"> No (0)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="question" id="q8-container">
+                <label>8. Do you like urban planning and development?</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="q8" value="1"> Yes (1)
+                    </label>
+                    <label>
+                        <input type="radio" name="q8" value="0"> No (0)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="question" id="q9-container">
+                <label>9. Do you enjoy studying algorithms and data structures?</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="q9" value="1"> Yes (1)
+                    </label>
+                    <label>
+                        <input type="radio" name="q9" value="0"> No (0)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="question" id="q10-container">
+                <label>10. Do you prefer working on software development over hardware?</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="q10" value="1"> Yes (1)
+                    </label>
+                    <label>
+                        <input type="radio" name="q10" value="0"> No (0)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="question" id="q11-container">
+                <label>11. Would you like to explore the field of artificial intelligence and machine learning?</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="q11" value="1"> Yes (1)
+                    </label>
+                    <label>
+                        <input type="radio" name="q11" value="0"> No (0)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="question" id="q12-container">
+                <label>12. Are you interested in signal processing and VLSI systems?</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="q12" value="1"> Yes (1)
+                    </label>
+                    <label>
+                        <input type="radio" name="q12" value="0"> No (0)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="question" id="q13-container">
+                <label>13. Do you like experimenting with IoT devices?</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="q13" value="1"> Yes (1)
+                    </label>
+                    <label>
+                        <input type="radio" name="q13" value="0"> No (0)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="question" id="q14-container">
+                <label>14. Are you interested in geotechnical engineering and soil mechanics?</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="q14" value="1"> Yes (1)
+                    </label>
+                    <label>
+                        <input type="radio" name="q14" value="0"> No (0)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="question" id="q15-container">
+                <label>15. Do you enjoy working on mechanical design and CAD?</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="q15" value="1"> Yes (1)
+                    </label>
+                    <label>
+                        <input type="radio" name="q15" value="0"> No (0)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="question" id="q16-container">
+                <label>16. Do you want to explore the realm of power system and transmission?</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="q16" value="1"> Yes (1)
+                    </label>
+                    <label>
+                        <input type="radio" name="q16" value="0"> No (0)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="question" id="q17-container">
+                <label>17. Would you prefer to work on projects related to web development and cybersecurity?</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="q17" value="1"> Yes (1)
+                    </label>
+                    <label>
+                        <input type="radio" name="q17" value="0"> No (0)
+                    </label>
+                </div>
+            </div>
+        
+            <!-- Add a "Next" button to navigate through the questions -->
+            <button type="button" id="nextButton" onclick="nextQuestion()">Next</button>
+        
+            <!-- Add a submit button to submit the form -->
+            <button type="submit" id="submitButton" style="display: none; margin: 0 auto;">Submit</button>
+        
+        </form>
+
+        <!-- Display formatted responses when available -->
+
+        
+        
+    </div>
+</div>
+
+<script>
+    let currentQuestion = 1;
+    const totalQuestions = 17; // Update this if you have more questions
+
+    function nextQuestion() {
+    const currentQuestionElement = document.getElementById(`q${currentQuestion}-container`);
+    const selectedOption = currentQuestionElement.querySelector('input:checked');
+
+    if (selectedOption === null) {
+        alert("Please answer the question before moving to the next one.");
+        return;
+    }
+
+    currentQuestionElement.style.display = "none";
+    currentQuestion++;
+
+    // When the last question is reached, hide the "Next" button and show the "Submit" button
+    if (currentQuestion > totalQuestions) {
+        document.getElementById("nextButton").style.display = "none";
+        document.getElementById("submitButton").style.display = "block";
+    } else {
+        const nextQuestionElement = document.getElementById(`q${currentQuestion}-container`);
+        nextQuestionElement.style.display = "block";
+        nextQuestionElement.classList.add("question-transition");
+        document.getElementById("submitButton").style.display = "none";
+    }
+}
+
+function navigateToAnotherPage() {
+            window.location.href = "{% url 'AfterRegistration' %}";
+        }
+
+</script>
+</body>
+</html>

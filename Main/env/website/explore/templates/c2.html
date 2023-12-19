@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PES University</title>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'logo.png' %}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <style>
+        body {
+            margin: 20px; /* Margin for the entire page */
+        }
+
+        .header-banner {
+            background-image: url('data:image/jpeg;base64,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'); /* Replace with your background image path */
+            background-size: 85%;
+            background-position: 40% 25%;
+            padding: 85px 0; /* Increased padding for a bigger header */
+            position: relative;
+        }
+
+        .header-banner:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+        }
+
+        .college-logo {
+            position: absolute; /* Absolute position */
+            top: 86%; /* Push down to the bottom of the header */
+            left: 20px; /* Slight offset from the left */
+            transform: translateY(-50%); /* Center vertically between sections */
+            width: 120px; /* Fixed width */
+            border-radius: 50%; /* Rounded */
+            overflow: hidden; /* Hide overflow */
+            z-index: 10; /* Above other elements */
+        }
+
+        .college-info {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-items: flex-start; /* Align items to the start of the flex container */
+        }
+
+        .brochure-download-btn-container {
+            margin-left: auto; /* Push the button to the right */
+            align-self: stretch; /* Stretch to take full width of the container */
+            text-align: right; /* Align button text to the right */
+            
+            background-color: #2a28a7; /* Green background */
+            color: white; /* White text */
+            padding: 1em 1.5em; /* Dynamic padding */
+            border: none; /* No border */
+            border-radius: 25px; /* Curved edges */
+            cursor: pointer; /* Pointer cursor on hover */
+         }
+
+        .location {
+            margin-top: 10px; /* Space between college name and location */
+            color: #212529; /* Bootstrap's default color for text */
+        }
+
+        .accreditation-badge-box {
+            background-color: #e0e0e0; /* Light grey background for the accreditation box */
+            padding: 5px 10px; /* Padding inside the box */
+            margin-top: 10px; /* Space above the box */
+            display: flex;
+             /* Align image and text */
+            margin-top: 20px;
+            margin-right: auto;
+        }
+
+        .accreditation-badge-img {
+            height: 20px; /* Adjust the height of the badge image */
+            margin-right: 5px; /* Space between image and text */
+        }
+
+        .flex-container {
+            display: flex;
+            margin-top: 20px; /* Add space between college-info and the new flex boxes */
+        }
+
+        .left-side {
+            flex: 3; /* The left side takes up more space */
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px; /* Space between the left and right side */
+        }
+
+        .right-side {
+            flex: 2; /* The right side takes up less space */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box {
+            background-color: #f0f0f0; /* Light grey background for visibility */
+            padding: 20px; /* Add some padding inside the boxes */
+            margin-bottom: 10px; /* Add some space between the boxes */
+            border: 1px solid #ccc; /* Add a border for visibility */
+        }
+
+        .box:last-child {
+            margin-bottom: 0; /* Ensuring the last box doesn't have a margin at the bottom */
+        }
+
+        @media (max-width: 768px) {
+            .header-banner, .college-logo, .college-info, .flex-container {
+                padding: 0;
+                margin: 0;
+            }
+
+            .flex-container {
+                flex-direction: column;
+            }
+
+            .left-side, .right-side {
+                flex: none; /* Remove the flex property for mobile */
+                margin-right: 0;
+            }
+
+            .box {
+                margin-bottom: 10px; /* Add space between boxes on mobile */
+            }
+
+            .college-logo {
+                width: 65px; /* Smaller logo on mobile */
+                left: 10px; /* Adjust left position on mobile */
+            }
+
+            .info-wrapper {
+                flex-direction: column; /* Stack elements vertically on smaller screens */
+            }
+        }
+
+        .box_right {
+            margin-top: 10px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            font-size: 16px; /* Increase base font size for all text in the box */
+        }
+
+        .box-heading {
+            font-size: 20px; /* Larger font size for the first line */
+            font-weight: bold; /* Optional: if you want the first line to be bold */
+            margin-bottom: 0.5em; /* Add some spacing below the heading */
+        }
+
+        .box-subheading {
+            font-size: 18px; /* Slightly larger font size for the second line */
+            margin-bottom: 0.5em; /* Add some spacing below the subheading */
+        }
+
+        .box ul {
+            padding-left: 20px; /* Add padding to align list properly */
+        }
+
+        .box li {
+            margin-bottom: 0.25em; /* Add some spacing between list items */
+        }
+
+        .button-container {
+            align-self: flex-end;
+            text-align: right; /* Align the button to the right */
+            padding-right: 20px; /* Add padding to the right to ensure it doesn't stick to the edge */
+            margin-left: auto;
+        }
+
+        .brochure-download-btn {
+            
+            margin-right: auto;
+            
+            color: white; /* White text */
+            padding: 1em 1.5em; /* Dynamic padding */
+            border: none; /* No border */
+            border-radius: 25px; /* Curved edges */
+            font-size: 1em; /* Dynamic font size */
+            cursor: pointer; /* Pointer cursor on hover */
+            display: inline-flex; /* To align icon and text */
+            align-items: center; /* Center items vertically */
+            justify-content: center; /* Center items horizontally */
+            /* Space above the button */
+        }
+
+        .brochure-download-btn i {
+            margin-right: 10px; /* Space between icon and text */
+        }
+
+        /* Adjust button for mobile */
+        @media (max-width: 768px) {
+            .brochure-download-btn {
+                font-size: 0.875em; /* Smaller font size on mobile */
+                padding: 0.8em 1.2em; /* Smaller padding on mobile */
+            }
+        }
+
+        .box {
+    background-color: white; /* Light grey background for visibility */
+    padding: 20px; /* Add some padding inside the boxes */
+    margin-bottom: 4px; /* Add some space between the boxes */
+    border: 3px solid blue; /* Blue border added */
+    border-radius: 20px;
+    border-style: inset;
+}
+
+
+.box_right {
+    margin-top: 10px;
+    background-color: rgb(175, 222, 240);
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 3px solid rgb(76, 76, 161); /* Blue border added */
+    font-size: 16px; /* Increase base font size for all text in the box */
+    border-radius: 20px
+}
+.flex-container1 {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            background-color: #f0f8ff;
+            padding: 5px;
+            margin-left: 5px;
+        }
+        
+    </style>
+</head>
+<body style="margin: 30px;">
+
+<div class="header-banner">
+    {% load static %}
+    <img src="{% static 'c2_logo.png' %}" alt="College Logo" class="college-logo">
+</div>
+
+<div class="college-info">
+    <br>
+    <h4 style="color: rgb(17, 17, 196); font-family: 'Arial', sans-serif; font-size: 1.5em; text-align: center;text-align: center; font-family: 'Verdana', sans-serif; font-size: 1.8em; font-weight: bold;">PES University, Bangalore</h4>
+
+    <div class="location">
+        <span>Banashankari, Bengaluru</span>
+    </div>
+
+    
+</div>
+<div class="flex-container1" style="background-color: white;">
+    <!-- Left Corner -->
+    <!-- <div class="accreditation-badge-box" style="background-color: white;">
+        {% load static %}
+        <span style="font-size: 17px;" >NAAC accredited</span> 
+    </div> -->
+
+    <!-- Right Corner -->
+    <button class="brochure-download-btn-container">
+        <a href="https://campaigns.pes.edu/bdes/?utm_medium=BDes_Google_Search_KAR&utm_campaign=BDes_Search&utm_source=Google_Ads&gad_source=1" class="brochure-download-btn" target="_blank">
+        <i class="fas fa-download"></i> Brochure
+        </a>
+    </button>
+</div>
+
+<div class="flex-container">
+    <div class="left-side">
+        <div style="background-color: #f0f8ff; padding: 10px; border-radius: 10px; margin: 10px 0; font-family: 'Open Sans', sans-serif; font-size: 16px; line-height: 1.6; color: #5858ba;font-weight: bold;">PES University, located in Bangalore, India is one of the country’s leading teaching and research universities. The University is committed to providing “navigation for the real world” that inspires students to find their true north.
+            Courses offered by institute are recognized and acknowlegded by approving bodies like AICTE. Most importantly, these courses with 1204 seats are imparted at affordable fees, which increase accessibility and allow students the opportunity to gain knowledge and skills in their chosen field. PES College of Engineering offered courses and their fee ranged INR 84,270-175,240 for a total of 1204 seats. For students institute have extraordinary facilities & infrastructure like Auditorium, Boys Hostel, Cafeteria, Girls Hostel, Gym, Hospital / Medical Facilities, Hostel, Labs, Library, Sports Complex, Wi-Fi Campus.
+            
+            
+            </div>
+        <div style="font-weight: bold;" class="box">
+            Admission to all the B.Tech Programmes for the year 2024 is based on any one of the following:
+
+            Admission through KCET – Candidate to take KCET entrance test and attend counseling at the KCET cell to secure admission
+
+            <li>Admission through JEE Mains – Candidate to register for B.Tech (JEE) from https://www.pessat.com/ and appear for counseling at PES University to secure admission
+                Admission through PESSAT – Candidate to register for B.Tech from https://www.pessat.com/ and take PESSAT entrance exam and appear for counseling at PES University to secure admission
+                </li>
+            <li>Admission through Higher Fee Category (Management Quota)</li>
+            <li>Please contact the Office of Admissions at PES University for further information on this or write to admissions@pes.edu</li>
+        </div>
+    </div>
+    <div class="right-side">
+        <div class="box_right">
+            <p class="box-heading">We are happy that you have found interest at PES University.<br> Application for BTech 2024 is open.</p>
+            <p class="box-subheading">B.Tech courses available:</p>
+            <ul>
+                <li>B.Tech Computer Science Engineering</li>
+                <li>B.Tech Artificial Intelligence Engineering</li>
+                <li>B.Tech Electronics and Communication Engineering</li>
+                <li>B.Tech Electrical and Electronics Engineering</li>
+                <li>B.Tech Biotechnology</li>
+            </ul>
+        </div>
+        <marquee id="marquee" behavior="scroll" direction="left" style="font-size: 24px; color: #6250ca;font-weight: bold;">ADMISSIONS OPEN FOR 2023-24!!! </marquee>
+
+        
+</div>
+
+</body>
+</html>

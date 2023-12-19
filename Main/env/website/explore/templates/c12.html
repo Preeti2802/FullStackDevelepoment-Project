@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sathyabama Institute of Science and Technology</title>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'logo.png' %}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <style>
+        body {
+            margin: 20px; /* Margin for the entire page */
+        }
+
+        .header-banner {
+            background-image: url('data:image/jpeg;base64,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'); /* Replace with your background image path */
+            background-size: 85%;
+            background-position: 40% 25%;
+            padding: 85px 0; /* Increased padding for a bigger header */
+            position: relative;
+        }
+
+        .header-banner:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+        }
+
+        .college-logo {
+            position: absolute; /* Absolute position */
+            top: 86%; /* Push down to the bottom of the header */
+            left: 20px; /* Slight offset from the left */
+            transform: translateY(-50%); /* Center vertically between sections */
+            width: 120px; /* Fixed width */
+            border-radius: 50%; /* Rounded */
+            overflow: hidden; /* Hide overflow */
+            z-index: 10; /* Above other elements */
+        }
+
+        .college-info {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-items: flex-start; /* Align items to the start of the flex container */
+        }
+
+        .brochure-download-btn-container {
+            margin-left: auto; /* Push the button to the right */
+            align-self: stretch; /* Stretch to take full width of the container */
+            text-align: right; /* Align button text to the right */
+            
+            background-color: #2a28a7; /* Green background */
+            color: white; /* White text */
+            padding: 1em 1.5em; /* Dynamic padding */
+            border: none; /* No border */
+            border-radius: 25px; /* Curved edges */
+            cursor: pointer; /* Pointer cursor on hover */
+         }
+
+        .location {
+            margin-top: 10px; /* Space between college name and location */
+            color: #212529; /* Bootstrap's default color for text */
+        }
+
+        .accreditation-badge-box {
+            background-color: #e0e0e0; /* Light grey background for the accreditation box */
+            padding: 5px 10px; /* Padding inside the box */
+            margin-top: 10px; /* Space above the box */
+            display: flex;
+             /* Align image and text */
+            margin-top: 20px;
+            margin-right: auto;
+        }
+
+        .accreditation-badge-img {
+            height: 20px; /* Adjust the height of the badge image */
+            margin-right: 5px; /* Space between image and text */
+        }
+
+        .flex-container {
+            display: flex;
+            margin-top: 20px; /* Add space between college-info and the new flex boxes */
+        }
+
+        .left-side {
+            flex: 3; /* The left side takes up more space */
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px; /* Space between the left and right side */
+        }
+
+        .right-side {
+            flex: 2; /* The right side takes up less space */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box {
+            background-color: #f0f0f0; /* Light grey background for visibility */
+            padding: 20px; /* Add some padding inside the boxes */
+            margin-bottom: 10px; /* Add some space between the boxes */
+            border: 1px solid #ccc; /* Add a border for visibility */
+        }
+
+        .box:last-child {
+            margin-bottom: 0; /* Ensuring the last box doesn't have a margin at the bottom */
+        }
+
+        @media (max-width: 768px) {
+            .header-banner, .college-logo, .college-info, .flex-container {
+                padding: 0;
+                margin: 0;
+            }
+
+            .flex-container {
+                flex-direction: column;
+            }
+
+            .left-side, .right-side {
+                flex: none; /* Remove the flex property for mobile */
+                margin-right: 0;
+            }
+
+            .box {
+                margin-bottom: 10px; /* Add space between boxes on mobile */
+            }
+
+            .college-logo {
+                width: 65px; /* Smaller logo on mobile */
+                left: 10px; /* Adjust left position on mobile */
+            }
+
+            .info-wrapper {
+                flex-direction: column; /* Stack elements vertically on smaller screens */
+            }
+        }
+
+        .box_right {
+            margin-top: 10px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            font-size: 16px; /* Increase base font size for all text in the box */
+        }
+
+        .box-heading {
+            font-size: 20px; /* Larger font size for the first line */
+            font-weight: bold; /* Optional: if you want the first line to be bold */
+            margin-bottom: 0.5em; /* Add some spacing below the heading */
+        }
+
+        .box-subheading {
+            font-size: 18px; /* Slightly larger font size for the second line */
+            margin-bottom: 0.5em; /* Add some spacing below the subheading */
+        }
+
+        .box ul {
+            padding-left: 20px; /* Add padding to align list properly */
+        }
+
+        .box li {
+            margin-bottom: 0.25em; /* Add some spacing between list items */
+        }
+
+        .button-container {
+            align-self: flex-end;
+            text-align: right; /* Align the button to the right */
+            padding-right: 20px; /* Add padding to the right to ensure it doesn't stick to the edge */
+            margin-left: auto;
+        }
+
+        .brochure-download-btn {
+            
+            margin-right: auto;
+            
+            color: white; /* White text */
+            padding: 1em 1.5em; /* Dynamic padding */
+            border: none; /* No border */
+            border-radius: 25px; /* Curved edges */
+            font-size: 1em; /* Dynamic font size */
+            cursor: pointer; /* Pointer cursor on hover */
+            display: inline-flex; /* To align icon and text */
+            align-items: center; /* Center items vertically */
+            justify-content: center; /* Center items horizontally */
+            /* Space above the button */
+        }
+
+        .brochure-download-btn i {
+            margin-right: 10px; /* Space between icon and text */
+        }
+
+        /* Adjust button for mobile */
+        @media (max-width: 768px) {
+            .brochure-download-btn {
+                font-size: 0.875em; /* Smaller font size on mobile */
+                padding: 0.8em 1.2em; /* Smaller padding on mobile */
+            }
+        }
+
+        .box {
+    background-color: white; /* Light grey background for visibility */
+    padding: 20px; /* Add some padding inside the boxes */
+    margin-bottom: 4px; /* Add some space between the boxes */
+    border: 3px solid blue; /* Blue border added */
+    border-radius: 20px;
+    border-style: inset;
+}
+
+
+.box_right {
+    margin-top: 10px;
+    background-color: rgb(175, 222, 240);
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 3px solid rgb(76, 76, 161); /* Blue border added */
+    font-size: 16px; /* Increase base font size for all text in the box */
+    border-radius: 20px
+}
+.flex-container1 {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            background-color: #f0f8ff;
+            padding: 5px;
+            margin-left: 5px;
+        }
+        
+    </style>
+</head>
+<body style="margin: 30px;">
+
+<div class="header-banner">
+    {% load static %}
+    <img src="{% static 'c12_logo.png' %}" alt="College Logo" class="college-logo">
+</div>
+
+<div class="college-info">
+    <br>
+    <h4 style="color: rgb(17, 17, 196); font-family: 'Arial', sans-serif; font-size: 1.5em; text-align: center;text-align: center; font-family: 'Verdana', sans-serif; font-size: 1.8em; font-weight: bold;">Sathyabama Institute of Science and Technology</h4>
+
+    <div class="location">
+        <span>Chennai, Tamil Nadu</span>
+    </div>
+
+    
+</div>
+<div class="flex-container1" style="background-color: white;">
+    <!-- Left Corner -->
+    <div class="accreditation-badge-box" style="background-color: white;">
+        <span style="font-size: 17px;" >NIRF:<strong>51</strong></span> 
+    </div>
+
+    <!-- Right Corner -->
+    <button class="brochure-download-btn-container">
+        <a href="https://www.sathyabama.ac.in/sites/default/files/2021-03/Information%20Brochure%20-%20SAEEE%20-%202021%20-%20Updated%20Copy.pdf" class="brochure-download-btn" target="_blank">
+        <i class="fas fa-download"></i> Brochure
+        </a>
+    </button>
+</div>
+
+<div class="flex-container">
+    <div class="left-side">
+        <div style="background-color: #f0f8ff; padding: 10px; border-radius: 10px; margin: 10px 0; font-family: 'Open Sans', sans-serif; font-size: 16px; line-height: 1.6; color: #5858ba;font-weight: bold;">
+            Sathyabama Institute of Science and Technology (SIST) is a private university in Chennai, Tamil Nadu, India. It was founded in 1987 as Sathyabama Engineering College and became a university in 2001. 
+SIST is a research-intensive university with world-class research facilities and laboratories. It offers undergraduate, postgraduate, and doctoral programs in engineering, architecture, dental, arts, commerce, and science. 
+SIST is accredited by the National Assessment and Accreditation Council (NAAC) with an A++ grade. It is approved by AICTE and is consistently ranked among the top 50 universities in India. 
+ In 2021, the National Institutional Ranking Framework (NIRF) ranked it 40th among Indian universities. 
+ In 2023, it was ranked 51st in the NIRF university ranking
+
+            </div>
+        <div style="font-weight: bold;" class="box">
+            Admission to all the B.Tech Programmes for the year 2024 is based on any one of the following:
+            10+2 with 45% aggregate
+Class 12th with Mathematics, Physics, and any one of the following subjects:
+•	Chemistry
+•	Computer Science
+•	Electronics
+•	Information Technology
+•	Biology
+•	Informatics Practices
+•	Biotechnology
+•	Technical Vocational Subject
+•	Agriculture
+•	Engineering Graphics
+•	Business Studies
+•	Entrepreneurship
+
+            <li>Entrance Examination – Engineering 2024</li>
+            <li>Accepting exams: CBSE 12th, ISC, Tamilnadu 12th, TNEA, SAEEE</li>
+        </div>
+    </div>
+    <div class="right-side">
+        <div class="box_right">
+            <p class="box-heading">We are happy that you have found interest at Sathyabama Institute of Science and Technology.<br> Application for BTech 2024 is open.</p>
+            <p class="box-subheading">B.Tech courses available:</p>
+            <ul>
+                <li>B.Tech Computer Science Engineering</li>
+                <li>B.Tech Artificial Intelligence Engineering</li>
+                <li>B.Tech Electronics and Communication Engineering</li>
+                <li>B.Tech Electrical and Electronics Engineering</li>
+                <li>Civil Engineering </li>
+                <li>B.Tech Mechanical Engineering</li>
+                <li>Aeronautical Engineeringg</li>
+                <li>Cyber Security</li>
+                <li>Block Chain Technology</li>
+            </ul>
+        </div>
+        <marquee id="marquee" behavior="scroll" direction="left" style="font-size: 24px; color: #6250ca;font-weight: bold;">ADMISSIONS OPEN FOR 2023-24!!! </marquee>
+
+        
+</div>
+
+</body>
+</html>

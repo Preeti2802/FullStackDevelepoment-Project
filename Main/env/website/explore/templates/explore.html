@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'logo.png' %}" />
+    <style>
+        /* ... (your existing styles) ... */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 70px;
+            position: fixed;
+            background-color: #211cba;
+            overflow-x: hidden;
+            padding-top: 20px;
+            transition: width 0.3s;
+        }
+
+        .sidebar:hover {
+            width: 165px;
+        }
+
+        .tabs {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tab {
+            padding: 20px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            background-color: #211cba;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .tab:hover {
+            background-color: #1a1c76;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        #tab1 {
+            display: none;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            margin-left: 60px;
+            padding: 16px;
+            transition: margin-left 0.3s;
+        }
+
+        .sidebar:hover ~ .content {
+            margin-left: 150px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            color: white;
+            padding: 10px;
+            margin-left: 60px;
+            transition: margin-left 0.3s;
+        }
+
+        .sidebar:hover ~ .logo-container {
+            margin-left: 150px;
+        }
+
+        .logo-img {
+            max-width: 125px;
+            height: auto;
+            margin-right: 60px;
+        }
+
+        .logo-text-container {
+            background-color: #211cba;
+            padding: 15px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown {
+            margin-right: 10px;
+        }
+
+        .logo-text-container .dropdown:first-child {
+            margin-right: auto;
+        }
+
+        .dropbtn {
+            background-color: #211cba;
+            color: white;
+            padding: 5px;
+            margin-left: 50px;
+            margin-right: 50px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            border-radius: 10px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            margin-top: 0;
+            top: 100%;
+            right: 10%;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            border-radius: 10px;
+            background-color: #403ae9;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .content-box {
+            background-color: #f0f0f0; /* Change background color as needed */
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            margin-left: 40px;
+            margin-right: 40px;
+
+        }
+        footer {
+            background-color: rgba(0,0,200);  /* Dark background for contrast */
+            color: white;            /* White text color */
+            text-align: center;     /* Some padding for spacing */
+            position: fixed;         /* Fixed position */
+            left: 0;                 /* Align to the left */
+            bottom: 0;               /* Position at the bottom */
+            width: 100%;             /* Full width */
+            font-size: 14px;         /* Adjust font size as needed */
+            width: 1550px;   /* Adjust width as needed */
+            height: 32px; 
+        }
+                
+
+    </style>
+    <title>Responsive Sidebar</title>
+</head>
+<body>
+    <footer>
+        <p>&copy; 2023 StudyPortal. All rights reserved.</p>
+    </footer>
+
+    {% comment %} </style>
+    <title>Responsive Sidebar</title>
+</head>
+<body> {% endcomment %}
+
+<div class="sidebar">
+    <!-- ... (existing sidebar content) ... -->
+    <div class="tabs">
+        <div class="tab" onclick="openTab('tab1')" style="display: flex; align-items: center;">
+            {% load static %}
+            <img src="{% static 'e1.png' %}" alt="Explore Icon" style="width: 25px; height: 25px; margin-right: 20px;">
+            Explore
+        </div>
+
+        <div class="tab">
+            <a href="/quiz" style="display: flex; align-items: center; color: white; text-decoration: none;">
+                {% load static %}
+                <img src="{% static 'e2.png' %}" alt="Quiz Icon" style="width: 29px; height: 29px; margin-right: 20px;">
+                Quiz
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="logo-container">
+    <!-- ... (existing logo content) ... -->
+    <a href="{% url 'AfterRegistration' %}">
+    {% load static %}
+    <img src="{% static 'logo.png' %}" alt="Your Logo" class="logo-img">
+    </a>
+    <div class="logo-text-container">
+        {% comment %} <div class="dropdown">
+            <button class="dropbtn">Category</button>
+            <div class="dropdown-content">
+                <a href="#">Commerce</a>
+                <a href="#">Engineering</a>
+            </div>
+        </div> {% endcomment %}
+
+        <div class="dropdown">
+            <button class="dropbtn">Program Level</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="filterLocation('All')">All</a>
+                <a href="#" onclick="filterContent('BTech')">BTech</a>
+                <a href="#" onclick="filterContent('MBA')">MBA</a>
+            </div>
+        </div>
+
+        <div class="dropdown" id="locationDropdown">
+            <button class="dropbtn">Location</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="filterLocation('All')">All Locations</a>
+                <a href="#" onclick="filterLocation('Bangalore')">Bangalore</a>
+                <a href="#" onclick="filterLocation('Chennai')">Chennai</a>
+            </div>
+        </div>
+
+        <input type="text" style="width: 400px; padding: 8px;" placeholder="Search..." name="search">
+        <button type="submit" style="width: 100px; padding: 10px; background-color: #1a1c76; color: white; border: none; cursor: pointer;">Search</button>
+    </div>
+</div>
+
+<div class="content">
+    <div id="tab1" class="tab-content">
+        <h2>Explore Content</h2>
+        <p>This is the content for the 'Explore' tab.</p>
+    </div>
+
+    <!-- Content boxes for institutions -->
+    <div class="content-box" id="Ramaiah" data-levels="Engineering">
+        <h3>Amrita School of Engneering, Bangalore</h3>
+        {% load static %}
+        <a href="{% url 'c1' %}">
+        <img src="{% static 'c1.jpg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+        </a>
+        <p>
+            Amrita Vishwa Vidyapeetham (Amrita University) is a private university in India with seven campuses across four states. The Bengaluru campus is the youngest university to receive the highest grade, A, from the NAAC. It's also recognized by the NBA and is internationally recognized for its MBA and PhD programs. 
+        </p>
+        <h4>Program Level:</h4>
+        <ul>
+            <li>BTech</li>
+
+            <p data-location="Bangalore"><strong>Location:</strong> Bangalore</p>
+            
+        </ul>
+    </div>
+
+    <div class="content-box" id="PES" data-levels="Engineering Masters">
+        <h3>PES University</h3>
+        {% load static %}
+        <a href="{% url 'c2' %}">
+        <img src="{% static 'c2.png' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+        </a>
+        <p>PES University, located in Bangalore, India is one of the country’s leading teaching and research universities. The University is committed to providing “navigation for the real world” that inspires students to find their true north.        </p>
+        <h4>Program Level:</h4>
+        <ul>
+            
+            <li>BTech</li>
+            
+            <p data-location="Bangalore"><strong>Location:</strong> Bangalore</p>
+
+        </ul>
+    </div>
+
+    <div class="content-box" id="Jain" data-levels="Engineering">
+        <h3>BMS College of Engineering</h3>
+        {% load static %}
+        <a href="{% url 'c3' %}">
+        <img src="{% static 'c3.png' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+        </a>
+        <p>Founded in 1946, BMS College of Engineering (popularly known as BMSCE) is located in Bengaluru, Karnataka. It is accredited by the NAAC with 'A++' Grade and a CGPA of 3.83 on a scale of four. It is the first college of Karnataka to be accredited by the National Board of Accreditation (NBA).        </p>
+        <h4>Program Level:</h4>
+        <ul>
+            <li>BTech</li>
+
+            <p data-location="Bangalore"><strong>Location:</strong> Bangalore</p>
+            
+        </ul>
+    </div>
+
+    <!-- Add content boxes for additional institutions -->
+    <div class="content-box" id="R.V" data-levels="Engineering">
+        <h3>R.V. College of Engineering Bangalore</h3>
+        {% load static %}
+        <a href="{% url 'c4' %}">
+        <img src="{% static 'c4.png' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+        </a>
+        <p>RVCE Bangalore is a private technical college that was established in 1963 and is approved by AICTE. In addition to this, it has also been accredited by NBA. RVCE is affiliated with Visvesvaraya Technological University.        </p>
+        <h4>Program Level:</h4>
+        <ul>
+            <li>BTech</li>
+
+            <p data-location="Bangalore"><strong>Location:</strong> Bangalore</p>
+            
+        </ul>
+    </div>
+
+    <div class="content-box" id="NIMHANS" data-levels="Engineering">
+        <h3> Ramaiah Institute of Technology (RIT)</h3>
+        {% load static %}
+        <a href="{% url 'c5' %}">
+        <img src="{% static 'c5.jpg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+        </a>
+        <p>Ramaiah Institute of Technology (RIT) is an esteemed engineering college in Bangalore, India. Established in 1962, it's part of the M.S. Ramaiah Foundation and is affiliated with Visvesvaraya Technological University (VTU).        </p>
+        <h4>Program Level:</h4>
+        <ul>
+            <li>Btech</li>
+
+            <p data-location="Bangalore"><strong>Location:</strong> Bangalore</p>
+            
+        </ul>
+    </div>
+
+    <div class="content-box" id="IIMB" data-levels="Engineering">
+        <h3>Indian Institute of Management Bangalore (IIM Bangalore)</h3>
+        {% load static %}
+        <a href="{% url 'c6' %}">
+        <img src="{% static 'c6.jpeg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+        </a>
+        <p>
+           IIMB is renowned for the excellence of its faculty who have studied and taught at some of the best universities in India and abroad. Our research regularly appears in leading pub- lications and academic journals around the world.
+        </p>
+        <h4>Program Level:</h4>
+        <ul>
+            <li>MBA</li>
+
+            <p data-location="Bangalore"><strong>Location:</strong> Bangalore</p>
+            
+        </ul>
+    </div>
+
+    <div class="content-box" id="IIITB" data-levels="Engineering">
+        <h3>Christ University</h3>
+        {% load static %}
+        <a href="{% url 'c7' %}">
+        <img src="{% static 'c7.jpg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+        </a>
+        <p>
+            One of the first institutions in India to be accredited in 1998 by the National Assessment and Accreditation Council (NAAC), Government of India, and subsequently in 2004, 2016, 2022 CHRIST (Deemed to be University) is currently accredited with 'A+' Grade. 
+        </p>
+        <h4>Program Level:</h4>
+        <ul>
+            <li>MBA</li>
+
+            <p data-location="Bangalore"><strong>Location:</strong> Bangalore</p>
+            
+        </ul>
+    </div>
+
+     <div class="content-box" id="PES" data-levels="Engineering">
+        <h3>Jain University</h3>
+        {% load static %}
+        <a href="{% url 'c8' %}">
+        <img src="{% static 'c8.jpeg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+        </a>
+        <p>
+            Teaching staffs have world-class expertise in a very wide variety of fields. So you can be sure that everything you are taught is extremely well-researched and up to date.
+        </p>
+        <h4>Program Level:</h4>
+        <ul>
+            <li>MBA</li>
+
+            <p data-location="Bangalore"><strong>Location:</strong> Bangalore</p>
+            
+        </ul>
+    </div>
+
+     <div class="content-box" id="RV" data-levels="Engineering">
+        <h3> SIBM Bangalore	</h3>
+        {% load static %}
+        <a href="{% url 'c9' %}">
+        <img src="{% static 'c9.jpg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+        </a>
+        <p>
+            With eminent faculty, holistic learning approaches, and a focus on data analytics, SIBM-B fosters a culture of excellence, equipping students with the skills and mindset needed to thrive in the corporate world. Join SIBM-B and unleash your leadership potential in the dynamic realm of business.
+        </p>
+        <h4>Program Level:</h4>
+        <ul>
+            <li>MBA</li>
+
+            <p data-location="Bangalore"><strong>Location:</strong> Bangalore</p>
+            
+        </ul>
+    </div>
+
+     <div class="content-box" id="Ramaiah" data-levels="Engineering">
+        <h3>Indian Institute of Technology Madras (IIT Madras)</h3>
+        {% load static %}
+        <a href="{% url 'c10' %}">
+        <img src="{% static 'c10.jpg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+        </a>
+        <p>The Indian Institute of Technology Madras is known both nationally and internationally for excellence in technical education, basic and applied research, innovation, entrepreneurship and industrial consultancy.         </p>
+        <h4>Program Level:</h4>
+        <ul>
+            <li>BTech,MBA</li>
+
+            <p data-location="Chennai"><strong>Location:</strong> Chennai</p>
+            
+        </ul>
+    </div>
+
+        <div class="content-box" id="Dayananda" data-levels="Engineering">
+        <h3>SRM Institute of Science and Technology</h3>
+        {% load static %}
+        <a href="{% url 'c11' %}">
+        <img src="{% static 'c11.png' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+        </a>
+        <p>
+            SRMIST is one of India's top-ranked universities, with more than 52,000 full-time students and over 3,200 faculty members. It has state-of-the-art laboratories for engineering and technology students, as well as a medical college, hospital, and research center
+        </p>
+        <h4>Program Level:</h4>
+        <ul>
+            <li>BTech </li>
+
+            <p data-location="Chennai"><strong>Location:</strong> Chennai</p>
+            
+        </ul>
+    </div>
+        <div class="content-box" id="BIT" data-levels="Engineering">
+        <h3>Sathyabama Institute of Science and Technology</h3>
+        {% load static %}
+        <a href="{% url 'c12' %}">
+        <img src="{% static 'c12.jpg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+        </a>
+        <p>
+            Sathyabama Institute of Science and Technology (SIST) is a private university in Chennai, Tamil Nadu, India. It was founded in 1987 as Sathyabama Engineering College and became a university in 2001. 
+        </p>
+        <h4>Program Level:</h4>
+        <ul>
+            <li>BTech </li>
+
+            <p data-location="Chennai"><strong>Location:</strong> Chennai</p>
+            
+        </ul>
+    </div>
+
+        <div class="content-box" id="BMS" data-levels="Engineering">
+        <h3>Anna University - Department of Technical Education</h3>
+        {% load static %}
+        <a href="{% url 'c13' %}">
+        <img src="{% static 'c13.jpeg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+        </a>
+        <p>
+         Anna University is a technical university in Chennai, India. It was established in 1978 and offers higher education in engineering, technology, architecture, and applied sciences. The university also promotes research and collaboration between academia and industry.
+        </p>
+        <h4>Program Level:</h4>
+        <ul>
+            <li>BTech</li>
+
+            <p data-location="Chennai"><strong>Location:</strong> Chennai</p>
+            
+        </ul>
+    </div>
+
+        <div class="content-box" id="Alliance" data-levels="Engineering">
+        <h3>SSN College of Engineering	</h3>
+        </a>
+        {% load static %}
+        <a href="{% url 'c14' %}">
+        <img src="{% static 'c14.jpeg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+        </a>
+        <p>
+            SSN College of Engineering (SSNCE) is a part of SSN institutions affiliated with Anna University. The institute is accredited by NBA and with A++ Grade by NAAC. Sri Sivasubramaniya Nadar College of Engineering is approved by AICTE and UGC. 
+        </p>
+        <h4>Program Level:</h4>
+        <ul>
+            <li>BTech </li>
+
+            <p data-location="Chennai"><strong>Location:</strong> Chennai</p>
+            
+        </ul>
+    </div>
+
+        <div class="content-box" id="amrita" data-levels="Engineering">
+        <h3>Anna University</h3>
+        {% load static %}
+        <a href="{% url 'c15' %}">
+        <img src="{% static 'c15.jpg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+        </a>
+        <p>The MBA program in Anna University was started in the year 1981. Ever since its inception, the Department of Management Studies (DOMS) has produced capable, competent and committed professionals. The spirit of pragmatic enquiry and in depth analysis of the dynamics of business has continued to this day.         </p>
+        <h4>Program Level:</h4>
+        <ul>
+            <li>MBA</li>
+
+            <p data-location="Chennai"><strong>Location:</strong> Chennai</p>
+            
+        </ul>
+    </div>
+
+    <div class="content-box" id="amrita" data-levels="Engineering">
+        <h3>Madras Institute of Technology</h3>
+        {% load static %}
+        <a href="{% url 'c16' %}">
+        <img src="{% static 'c16.jpeg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+        </a>
+        <p>
+            Madras Institute of Technology was established in 1949. It is a private institute affiliated with Anna University. The institute is approved by AICTE
+        </p>
+        <h4>Program Level:</h4>
+        <ul>
+            <li>Btech</li>
+
+            <p data-location="Chennai"><strong>Location:</strong> Chennai</p>
+            
+        </ul>
+    </div>
+
+    <div class="content-box" id="amrita" data-levels="Engineering">
+        <h3>MOP Vaishnav College for Women</h3>
+        {% load static %}
+        <a href="{% url 'c17' %}">
+        <img src="{% static 'c17.jpeg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+        </a>
+        <p>A premier Institute in higher education, M.O.P. Vaishnav College for Women is grounded in Chennai, Tamil Nadu since 1992. A student can pursue any program from the Institute which Degree courses including 12 UG and 8 PG courses        </p>
+        <h4>Program Level:</h4>
+        <ul>
+            <li>MBA </li>
+
+            <p data-location="Chennai"><strong>Location:</strong> Chennai</p>
+            
+        </ul>
+    </div>
+
+    
+
+</div>
+<script>
+    function openTab(tabName) {
+        var i, tabContent;
+        tabContent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabContent.length; i++) {
+            tabContent[i].style.display = "none";
+        }
+        document.getElementById(tabName).style.display = "block";
+    }
+
+    // Search functionality
+    document.querySelector('button[type="submit"]').addEventListener('click', function() {
+        var searchInput = document.querySelector('input[name="search"]').value.toLowerCase();
+        var contentBoxes = document.getElementsByClassName('content-box');
+
+        for (var i = 0; i < contentBoxes.length; i++) {
+            var contentBox = contentBoxes[i];
+            var instituteName = contentBox.querySelector('h3').innerText.toLowerCase();
+
+            if (instituteName.includes(searchInput)) {
+                contentBox.style.display = 'block';
+            } else {
+                contentBox.style.display = 'none';
+            }
+        }
+    });
+
+    function filterContent(programLevel) {
+        var contentBoxes = document.getElementsByClassName('content-box');
+    
+        for (var i = 0; i < contentBoxes.length; i++) {
+            var contentBox = contentBoxes[i];
+            var programLevelElement = contentBox.querySelector('h4 + ul li');
+            
+            // Use innerText to get the text content
+            var contentProgramLevel = programLevelElement ? programLevelElement.innerText.trim() : '';
+    
+            // Check if the selected program level is in the content program level
+            var isVisible = programLevel === 'All' || programLevel === contentProgramLevel;
+    
+            // Toggle visibility based on the above condition
+            contentBox.style.display = isVisible ? 'block' : 'none';
+        }
+    }
+    
+    // Initial load - show all content
+    filterContent('All');
+
+    function filterLocation(selectedLocation) {
+        var contentBoxes = document.getElementsByClassName('content-box');
+
+        for (var i = 0; i < contentBoxes.length; i++) {
+            var contentBox = contentBoxes[i];
+            var locationElement = contentBox.querySelector('p[data-location]');
+            var locationAttribute = locationElement ? locationElement.getAttribute('data-location').toLowerCase() : '';
+            var isVisible = (selectedLocation === 'All' || locationAttribute === selectedLocation.toLowerCase());
+
+            // Toggle visibility based on the above condition
+            contentBox.style.display = isVisible ? 'block' : 'none';
+        }
+    }
+
+    // Initial load - show all content for location
+    filterLocation('All');
+    
+</script>
+

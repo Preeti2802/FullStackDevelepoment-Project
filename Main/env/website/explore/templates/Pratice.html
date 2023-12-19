@@ -1,0 +1,523 @@
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'logo.png' %}" />
+    <style>
+        /* ... (your existing styles) ... */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 70px;
+            position: fixed;
+            background-color: #211cba;
+            overflow-x: hidden;
+            padding-top: 20px;
+            transition: width 0.3s;
+        }
+
+        .sidebar:hover {
+            width: 165px;
+        }
+
+        .tabs {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tab {
+            padding: 20px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            background-color: #211cba;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .tab:hover {
+            background-color: #1a1c76;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        #tab1 {
+            display: none;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            margin-left: 60px;
+            padding: 16px;
+            transition: margin-left 0.3s;
+        }
+
+        .sidebar:hover ~ .content {
+            margin-left: 150px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            color: white;
+            padding: 10px;
+            margin-left: 60px;
+            transition: margin-left 0.3s;
+        }
+
+        .sidebar:hover ~ .logo-container {
+            margin-left: 150px;
+        }
+
+        .logo-img {
+            max-width: 125px;
+            height: auto;
+            margin-right: 60px;
+        }
+
+        .logo-text-container {
+            background-color: #211cba;
+            padding: 15px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown {
+            margin-right: 10px;
+        }
+
+        .logo-text-container .dropdown:first-child {
+            margin-right: auto;
+        }
+
+        .dropbtn {
+            background-color: #211cba;
+            color: white;
+            padding: 5px;
+            margin-left: 50px;
+            margin-right: 50px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            border-radius: 10px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            margin-top: 0;
+            top: 100%;
+            right: 10%;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            border-radius: 10px;
+            background-color: #403ae9;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .content-box {
+            background-color: #f0f0f0; /* Change background color as needed */
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            margin-left: 40px;
+            margin-right: 40px;
+        }
+
+        .content-box.hidden {
+            display: none;
+        }
+        
+    </style>
+    <title>Responsive Sidebar</title>
+</head>
+<body>
+
+
+    <div class="sidebar">
+        <!-- ... (existing sidebar content) ... -->
+        <div class="tabs">
+            <div class="tab" onclick="openTab('tab1')" style="display: flex; align-items: center;">
+                {% load static %}
+                <img src="{% static 'e1.png' %}" alt="Explore Icon" style="width: 25px; height: 25px; margin-right: 20px;">
+                Explore
+            </div>
+    
+            <div class="tab">
+                <a href="/quiz" style="display: flex; align-items: center; color: white; text-decoration: none;">
+                    {% load static %}
+                    <img src="{% static 'e2.png' %}" alt="Quiz Icon" style="width: 29px; height: 29px; margin-right: 20px;">
+                    Quiz
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="logo-container">
+        <!-- ... (existing logo content) ... -->
+        {% load static %}
+        <img src="{% static 'logo.png' %}" alt="Your Logo" class="logo-img">
+        <div class="logo-text-container">
+            {% comment %} <div class="dropdown">
+                <button class="dropbtn">Category</button>
+                <div class="dropdown-content">
+                    <a href="#">Commerce</a>
+                    <a href="#">Engineering</a>
+                </div>
+            </div> {% endcomment %}
+    
+            <div class="dropdown">
+                <button class="dropbtn">Program Level</button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="filterContent('Engineering')">Engineering</a>
+                    <a href="#" onclick="filterContent('MTech')">MTech</a>
+                    <a href="#" onclick="filterContent('PhD')">PhD</a>
+                </div>
+            </div>
+            
+            <div class="dropdown" id="locationDropdown">
+                <button class="dropbtn">Location</button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="filterLocation('All')">All Locations</a>
+                    <a href="#" onclick="filterLocation('Bangalore')">Bangalore</a>
+                    <a href="#" onclick="filterLocation('Chennai')">Chennai</a>
+                </div>
+            </div>
+            
+            
+
+            
+            
+            <input type="text" style="width: 400px; padding: 8px;" placeholder="Search..." name="search">
+            <button type="submit" style="width: 100px; padding: 10px; background-color: #1a1c76; color: white; border: none; cursor: pointer;">Search</button>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div id="tab1" class="tab-content">
+            <h2>Explore Content</h2>
+            <p>This is the content for the 'Explore' tab.</p>
+        </div>
+    
+        <!-- Content boxes for institutions -->
+        <div class="content-box" id="IISc" data-levels="Engineering Masters">
+            <h3>1.Indian Institute of Science (IISc)</h3>
+            {% load static %}
+            <a href="https://bs-ug.iisc.ac.in/info_brochure.html">
+                <img src="{% static 'c1.jpeg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+            </a>
+            <p>
+                IISc is renowned for its academic freedom, focus on research excellence, and the high quality of its faculty and students.
+            </p>
+            <h4>Program Level:</h4>
+            <ul>
+                <li>Engineering, Science, Management, Design</li>
+                <p data-location="Bangalore"><strong>Location:</strong> Bangalore</p>
+            </ul>
+        </div>
+        
+    
+        <div class="content-box" id="Christ" data-levels="Engineering Masters">
+            <h3>2.Christ University	</h3>
+            {% load static %}
+            <img src="{% static 'c2.jpeg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+            <p>
+                The university is known for the training and placement services it offers to the students. Each department has a placement representative and they organise career development programmes and upskilling trainings for interested students.
+            </p>
+            <h4>Program Level:</h4>
+            <ul>
+                
+                <li>BBA, BCA, BCom, BSc, BA, BEd, BTech, LLB, LLM, MBA, MSc, MCom, MA, MSW, MTech, PhD</li>
+                
+            </ul>
+        </div>
+    
+        <div class="content-box" id="Jain" data-levels="Engineering">
+            <h3>3.School of Sciences, Jain Deemed-to-be University, Bangalore	</h3>
+            {% load static %}
+            <img src="{% static 'c3.jpeg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+            <p>
+                The degrees awarded by Jain University are valid and recognised by the University Grants Commission (UGC), making them widely accepted in academic and professional circles.
+            </p>
+            <h4>Program Level:</h4>
+            <ul>
+                <li>BSc, BCA, MCA, PhD</li>
+                
+            </ul>
+        </div>
+    
+        <!-- Add content boxes for additional institutions -->
+        <div class="content-box" id="Agricultural" data-levels="Engineering">
+            <h3>4.University of Agricultural Sciences, Bangalore</h3>
+            {% load static %}
+            <img src="{% static 'c4.jpg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+            <p>
+                The university came into existence on 21 August 1964 and was meant to serve the agricultural education needs of the state of Karnataka with a campus that included the old experimental stations 
+            </p>
+            <h4>Program Level:</h4>
+            <ul>
+                <li>M.Tech., MBA, Ph.D.</li>
+                
+            </ul>
+        </div>
+    
+        <div class="content-box" id="NIMHANS" data-levels="Engineering">
+            <h3> 5.National Institute of Mental Health and Neurosciences (NIMHANS)	</h3>
+            {% load static %}
+            <img src="{% static 'c5.jpeg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+            <p>
+                NIMHANS is world-renowned as a centre for mental health, neurosciences and allied fields. The vision of NIMHANS is to be a world leader in these areas and to evolve state of the art approaches to patient care through translational research.
+            </p>
+            <h4>Program Level:</h4>
+            <ul>
+                <li>MBBS, MSc</li>
+                
+            </ul>
+        </div>
+    
+        <div class="content-box" id="IIMB" data-levels="Engineering">
+            <h3>6.Indian Institute of Management Bangalore (IIMB)	</h3>
+            {% load static %}
+            <img src="{% static 'c6.jpeg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+            <p>
+                IIMB is renowned for the excellence of its faculty who have studied and taught at some of the best universities in India and abroad. Our research regularly appears in leading pub- lications and academic journals around the world.
+            </p>
+            <h4>Program Level:</h4>
+            <ul>
+                <li>PGP</li>
+                
+            </ul>
+        </div>
+    
+        <div class="content-box" id="IIITB" data-levels="Engineering">
+            <h3>7.International Institute of Information Technology Bangalore (IIITB)		</h3>
+            {% load static %}
+            <img src="{% static 'c7.jpeg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+            <p>
+                It is a prestigious institute ranked 81st in the Engineering category by India's National Institutional Ranking Framework (NIRF) 2022. 
+            </p>
+            <h4>Program Level:</h4>
+            <ul>
+                <li>BTech, MTech, PhD</li>
+                
+            </ul>
+        </div>
+    
+         <div class="content-box" id="PES" data-levels="Engineering">
+            <h3>8.PES University	</h3>
+            {% load static %}
+            <img src="{% static 'c8.jpg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+            <p>
+                PES University, India is one of the country's leading teaching and research universities. The University is committed to providing “navigation for the real world” that inspires students to find their true north.
+            </p>
+            <h4>Program Level:</h4>
+            <ul>
+                <li>BTech, MTech, MBA, MCA, BBA, BCA, MSc, MA, PhD</li>
+                
+            </ul>
+        </div>
+    
+         <div class="content-box" id="RV" data-levels="Engineering">
+            <h3> 9. RV College of Engineering	</h3>
+            {% load static %}
+            <img src="{% static 'c9.jpg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+            <p>
+                The University offers interdisciplinary learning that helps students improve critical thinking skills along with other skills. The modern incubation centre of RVU offers facilities and amenities that encourage collaboration and stimulate creativity.
+            </p>
+            <h4>Program Level:</h4>
+            <ul>
+                <li>BTech, MTech, MCA, MBA</li>
+                
+            </ul>
+        </div>
+    
+         <div class="content-box" id="Ramaiah" data-levels="Engineering">
+            <h3>10. M.S. Ramaiah University of Applied Sciences</h3>
+            {% load static %}
+            <img src="{% static 'c10.jpg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+            <p>
+                Over the years,Ramaiah University of Applied Sciences(RUAS) has created a name for itself as a university that is centered around academia, industry, and society; one that works tirelessly to mould the thinkers of tomorrow.
+            </p>
+            <h4>Program Level:</h4>
+            <ul>
+                <li>BTech, MTech, MBA, BBA, BCA, MSc, MA, PhD</li>
+                
+            </ul>
+        </div>
+            <div class="content-box" id="Dayananda" data-levels="Engineering">
+            <h3>11. Dayananda Sagar University</h3>
+            {% load static %}
+            <img src="{% static 'c11.png' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+            <p>
+                Dayananda Sagar, DSU is recognised by the UGC and is also a member of the Association of Indian Universities (AIU). Also, the university has been ranked 3 in the State zone and South zone (2021) by IIRF.
+            </p>
+            <h4>Program Level:</h4>
+            <ul>
+                <li>BTech, MTech, MBA, BBA, BCA, MSc, MA, PhD</li>
+                
+            </ul>
+        </div>
+            <div class="content-box" id="BIT" data-levels="Engineering">
+            <h3>12. Bangalore Institute of Technology (BIT)	</h3>
+            {% load static %}
+            <img src="{% static 'c12.jpeg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+            <p>
+                BIT has always been at the forefront of modern technology and has the distinction of being the ﬁrst College to introduce a full-ﬂedged degree in Computer Science and Engineering in Karnataka.
+            </p>
+            <h4>Program Level:</h4>
+            <ul>
+                <li>BTech, MTech, MBA, BBA, BCA, MSc, MA, PhD</li>
+                
+            </ul>
+        </div>
+    
+            <div class="content-box" id="BMS" data-levels="Engineering">
+            <h3>13. BMS Institute of Technology and Management</h3>
+            {% load static %}
+            <img src="{% static 'c13.jpg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+            <p>
+                BMS Institutions takes pride in educating students since 1946 in various fields of Engineering and continues to provide world class education in the coming years with more emphasis on research and development.
+            </p>
+            <h4>Program Level:</h4>
+            <ul>
+                <li>BTech, MTech, MBA, BBA, BCA, MSc, MA, PhD</li>
+
+                <p data-location="Chennai"><strong>Location:</strong> Chennai</p>
+                
+            </ul>
+        </div>
+    
+            <div class="content-box" id="Alliance" data-levels="Engineering Masters" data-location="Bangalore">
+            <h3>14. Alliance University	</h3>
+            {% load static %}
+            <img src="{% static 'c14.jpg' %}" alt="Explore Icon" style="width: 450px; height: 200px; margin-right: 20px;">
+            <p>
+                Alliance University Known for its robust academic programs, diverse student body, world-renowned location, and commitment to global service, AU is an exciting place to learn and grow.
+            </p>
+            <h4>Program Level:</h4>
+            <ul>
+                <li>BTech, MTech, MBA, BBA, BCA, MSc, MA, PhD</li>
+
+                <p data-location="Bangalore"><strong>Location:</strong> Bangalore</p>
+                
+            </ul>
+
+ 
+      
+    
+    </div>
+    <script>
+        function openTab(tabName) {
+            var i, tabContent;
+            tabContent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabContent.length; i++) {
+                tabContent[i].style.display = "none";
+            }
+            document.getElementById(tabName).style.display = "block";
+        }
+    
+        // Search functionality
+        document.querySelector('button[type="submit"]').addEventListener('click', function() {
+            var searchInput = document.querySelector('input[name="search"]').value.toLowerCase();
+            var contentBoxes = document.getElementsByClassName('content-box');
+    
+            for (var i = 0; i < contentBoxes.length; i++) {
+                var contentBox = contentBoxes[i];
+                var instituteName = contentBox.querySelector('h3').innerText.toLowerCase();
+    
+                if (instituteName.includes(searchInput)) {
+                    contentBox.style.display = 'block';
+                } else {
+                    contentBox.style.display = 'none';
+                }
+            }
+        });
+    
+        function filterContent(programLevel) {
+            var contentBoxes = document.getElementsByClassName('content-box');
+        
+            for (var i = 0; i < contentBoxes.length; i++) {
+                var contentBox = contentBoxes[i];
+                var programLevels = contentBox.querySelector('h4 + ul').textContent.split(',').map(level => level.trim());
+        
+                // Check if the selected program level is in the array of program levels
+                var isVisible = programLevels.includes(programLevel) || programLevel === 'All';
+        
+                // Toggle visibility based on the above condition
+                contentBox.style.display = isVisible ? 'block' : 'none';
+            }
+        }
+        
+        function filterLocation(selectedLocation) {
+            var contentBoxes = document.getElementsByClassName('content-box');
+    
+            for (var i = 0; i < contentBoxes.length; i++) {
+                var contentBox = contentBoxes[i];
+                var locationElement = contentBox.querySelector('p strong:contains("Location")');
+                
+                if (locationElement) {
+                    var contentLocation = locationElement.nextSibling.nodeValue.trim().toLowerCase();
+                    var isVisible = (selectedLocation === 'All' || contentLocation === selectedLocation.toLowerCase());
+    
+                    // Toggle visibility based on the above condition
+                    contentBox.style.display = isVisible ? 'block' : 'none';
+                } else {
+                    // If location element is not found, show the content box
+                    contentBox.style.display = 'block';
+                }
+            }
+        }
+        
+        function filterLocation(selectedLocation) {
+            var contentBoxes = document.getElementsByClassName('content-box');
+    
+            for (var i = 0; i < contentBoxes.length; i++) {
+                var contentBox = contentBoxes[i];
+                var locationElement = contentBox.querySelector('p[data-location]');
+                var locationAttribute = locationElement ? locationElement.getAttribute('data-location').toLowerCase() : '';
+                var isVisible = (selectedLocation === 'All' || locationAttribute === selectedLocation.toLowerCase());
+    
+                // Toggle visibility based on the above condition
+                contentBox.style.display = isVisible ? 'block' : 'none';
+            }
+        }
+    
+        // Initial load - show all content for location
+        filterLocation('All');
+        
+    </script>
+    
+

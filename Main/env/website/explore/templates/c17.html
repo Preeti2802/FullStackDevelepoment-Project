@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOP Vaishnav College for Women</title>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'logo.png' %}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <style>
+        body {
+            margin: 20px; /* Margin for the entire page */
+        }
+
+        .header-banner {
+            background-image: url('data:image/jpeg;base64,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'); /* Replace with your background image path */
+            background-size: 85%;
+            background-position: 40% 25%;
+            padding: 85px 0; /* Increased padding for a bigger header */
+            position: relative;
+        }
+
+        .header-banner:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+        }
+
+        .college-logo {
+            position: absolute; /* Absolute position */
+            top: 86%; /* Push down to the bottom of the header */
+            left: 20px; /* Slight offset from the left */
+            transform: translateY(-50%); /* Center vertically between sections */
+            width: 120px; /* Fixed width */
+            border-radius: 50%; /* Rounded */
+            overflow: hidden; /* Hide overflow */
+            z-index: 10; /* Above other elements */
+        }
+
+        .college-info {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-items: flex-start; /* Align items to the start of the flex container */
+        }
+
+        .brochure-download-btn-container {
+            margin-left: auto; /* Push the button to the right */
+            align-self: stretch; /* Stretch to take full width of the container */
+            text-align: right; /* Align button text to the right */
+            
+            background-color: #2a28a7; /* Green background */
+            color: white; /* White text */
+            padding: 1em 1.5em; /* Dynamic padding */
+            border: none; /* No border */
+            border-radius: 25px; /* Curved edges */
+            cursor: pointer; /* Pointer cursor on hover */
+         }
+
+        .location {
+            margin-top: 10px; /* Space between college name and location */
+            color: #212529; /* Bootstrap's default color for text */
+        }
+
+        .accreditation-badge-box {
+            background-color: #e0e0e0; /* Light grey background for the accreditation box */
+            padding: 5px 10px; /* Padding inside the box */
+            margin-top: 10px; /* Space above the box */
+            display: flex;
+             /* Align image and text */
+            margin-top: 20px;
+            margin-right: auto;
+        }
+
+        .accreditation-badge-img {
+            height: 20px; /* Adjust the height of the badge image */
+            margin-right: 5px; /* Space between image and text */
+        }
+
+        .flex-container {
+            display: flex;
+            margin-top: 20px; /* Add space between college-info and the new flex boxes */
+        }
+
+        .left-side {
+             /* The left side takes up more space */
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px; /* Space between the left and right side */
+        }
+
+
+        .box {
+            background-color: #f0f0f0; /* Light grey background for visibility */
+            padding: 20px; /* Add some padding inside the boxes */
+            margin-bottom: 10px; /* Add some space between the boxes */
+            border: 1px solid #ccc; /* Add a border for visibility */
+        }
+
+        .box:last-child {
+            margin-bottom: 0; /* Ensuring the last box doesn't have a margin at the bottom */
+        }
+
+        @media (max-width: 768px) {
+            .header-banner, .college-logo, .college-info, .flex-container {
+                padding: 0;
+                margin: 0;
+            }
+
+            .flex-container {
+                flex-direction: column;
+            }
+
+            .left-side, .right-side {
+                flex: none; /* Remove the flex property for mobile */
+                margin-right: 0;
+            }
+
+            .box {
+                margin-bottom: 10px; /* Add space between boxes on mobile */
+            }
+
+            .college-logo {
+                width: 65px; /* Smaller logo on mobile */
+                left: 10px; /* Adjust left position on mobile */
+            }
+
+            .info-wrapper {
+                flex-direction: column; /* Stack elements vertically on smaller screens */
+            }
+        }
+
+        .box_right {
+            margin-top: 10px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            font-size: 16px; /* Increase base font size for all text in the box */
+        }
+
+        .box-heading {
+            font-size: 20px; /* Larger font size for the first line */
+            font-weight: bold; /* Optional: if you want the first line to be bold */
+            margin-bottom: 0.5em; /* Add some spacing below the heading */
+        }
+
+        .box-subheading {
+            font-size: 18px; /* Slightly larger font size for the second line */
+            margin-bottom: 0.5em; /* Add some spacing below the subheading */
+        }
+
+        .box ul {
+            padding-left: 20px; /* Add padding to align list properly */
+        }
+
+        .box li {
+            margin-bottom: 0.25em; /* Add some spacing between list items */
+        }
+
+        .button-container {
+            align-self: flex-end;
+            text-align: right; /* Align the button to the right */
+            padding-right: 20px; /* Add padding to the right to ensure it doesn't stick to the edge */
+            margin-left: auto;
+        }
+
+        .brochure-download-btn {
+            
+            margin-right: auto;
+            
+            color: white; /* White text */
+            padding: 1em 1.5em; /* Dynamic padding */
+            border: none; /* No border */
+            border-radius: 25px; /* Curved edges */
+            font-size: 1em; /* Dynamic font size */
+            cursor: pointer; /* Pointer cursor on hover */
+            display: inline-flex; /* To align icon and text */
+            align-items: center; /* Center items vertically */
+            justify-content: center; /* Center items horizontally */
+            /* Space above the button */
+        }
+
+        .brochure-download-btn i {
+            margin-right: 10px; /* Space between icon and text */
+        }
+
+        /* Adjust button for mobile */
+        @media (max-width: 768px) {
+            .brochure-download-btn {
+                font-size: 0.875em; /* Smaller font size on mobile */
+                padding: 0.8em 1.2em; /* Smaller padding on mobile */
+            }
+        }
+
+        .box {
+    background-color: white; /* Light grey background for visibility */
+    padding: 20px; /* Add some padding inside the boxes */
+    margin-bottom: 4px; /* Add some space between the boxes */
+    border: 3px solid blue; /* Blue border added */
+    border-radius: 20px;
+    border-style: inset;
+}
+
+
+.box_right {
+    margin-top: 10px;
+    background-color: rgb(175, 222, 240);
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 3px solid rgb(76, 76, 161); /* Blue border added */
+    font-size: 16px; /* Increase base font size for all text in the box */
+    border-radius: 20px
+}
+.flex-container1 {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            background-color: #f0f8ff;
+            padding: 5px;
+            margin-left: 5px;
+        }
+        
+    </style>
+</head>
+<body style="margin: 30px;">
+
+<div class="header-banner">
+    {% load static %}
+    <img src="{% static 'c17_logo.png' %}" alt="College Logo" class="college-logo">
+</div>
+
+<div class="college-info">
+    <br>
+    <h4 style="color: rgb(17, 17, 196); font-family: 'Arial', sans-serif; font-size: 1.5em; text-align: center;text-align: center; font-family: 'Verdana', sans-serif; font-size: 1.8em; font-weight: bold;">MOP Vaishnav College for Women</h4>
+
+    <div class="location">
+        <span>Nungambakkam High Road, Chennai</span>
+    </div>
+
+    
+</div>
+<div class="flex-container1" style="background-color: white;">
+    <!-- Left Corner -->
+    <div class="accreditation-badge-box" style="background-color: white;">
+        
+        <span style="font-size: 17px;" ><strong> A </strong>NAAC accredited</span> 
+    </div>
+
+    <!-- Right Corner -->
+    <button class="brochure-download-btn-container">
+        <a href="https://mopvc.edu.in/general-information-brochure/" class="brochure-download-btn" target="_blank">
+        <i class="fas fa-download"></i> Brochure
+        </a>
+    </button>
+</div>
+
+<div class="flex-container">
+    <div class="left-side">
+        <div style="background-color: #f0f8ff; padding: 10px; border-radius: 10px; margin: 10px 0; font-family: 'Open Sans', sans-serif; font-size: 16px; line-height: 1.6; color: #5858ba;font-weight: bold;">
+            
+            A premier Institute in higher education, M.O.P. Vaishnav College for Women is grounded in Chennai, Tamil Nadu since 1992. A student can pursue any program from the Institute which Degree courses including 12 UG and 8 PG courses. These programs are offerred in Full Time mode. M.O.P. Vaishnav College for Women is a reputed institute for B.Com, M.A., M.Sc., B.A., BCA, M.Com, BBA, B.Sc., MBA/PGDM courses. Students can chose from these programs to persue their career in higher studies. Institute enjoys a good reputation for courses like B.Com, M.A., M.Sc., B.A., BCA, M.Com, BBA, B.Sc., MBA/PGDM in the streams of Accounting & Commerce, Humanities & Social Sciences, IT & Software, Mass Communication & Media, Business & Management Studies, Science, Engineering Students can opt courses from these. M.O.P. Vaishnav College for Women gave you offer to gained expertize through its trained and experienced faculty in the fields of Media Planning, Mathematics, Food Technology, Computer Science, Food & Nutrition. Institue offered courses that are approved by AICTE. Courses offered by M.O.P. Vaishnav College for Women for total of 60 candidates. Courses offered by the Institute are in the fee range of INR 123,800 for a total of 60 candidates. Institute has a well supported campus with facilities like Auditorium, Cafeteria, Hostel, Labs, Library, Sports Complex, Wi-Fi Campus.
+            
+            </div>
+        <div style="font-weight: bold;" class="box">
+            Admission to all the B.Tech Programmes for the year 2024 is based on any one of the following:
+            MOP Vaishnav college offers postgraduate course in the field of Business Administration. The MBA course offered by MOP Vaishnav College is generally for a duration of three years.
+            The Anna University of Tamil Nadu conducts an admission test for the candidates seeking admission in MBA program which is called Tamil Nadu Common Entrance Test (TANCET).
+            Admission to the MBA program at the college is based on the score obtained by the candidates in TANCET, based on which the candidates are called up for counselling.
+
+        </div>
+        <marquee id="marquee" behavior="scroll" direction="left" style="font-size: 24px; color: #6250ca;font-weight: bold;">ADMISSIONS OPEN FOR 2023-24!!! </marquee>
+
+    </div>
+   
+
+
+ 
+
+</body>
+</html>

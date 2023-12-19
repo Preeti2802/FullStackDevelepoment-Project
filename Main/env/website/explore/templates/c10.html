@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Institute of Technology Madras (IIT Madras)</title>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'logo.png' %}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <style>
+        body {
+            margin: 20px; /* Margin for the entire page */
+        }
+
+        .header-banner {
+            background-image: url('data:image/jpeg;base64,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'); /* Replace with your background image path */
+            background-size: 85%;
+            background-position: 40% 25%;
+            padding: 85px 0; /* Increased padding for a bigger header */
+            position: relative;
+        }
+
+        .header-banner:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+        }
+
+        .college-logo {
+            position: absolute; /* Absolute position */
+            top: 86%; /* Push down to the bottom of the header */
+            left: 20px; /* Slight offset from the left */
+            transform: translateY(-50%); /* Center vertically between sections */
+            width: 120px; /* Fixed width */
+            border-radius: 50%; /* Rounded */
+            overflow: hidden; /* Hide overflow */
+            z-index: 10; /* Above other elements */
+        }
+
+        .college-info {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-items: flex-start; /* Align items to the start of the flex container */
+        }
+
+        .brochure-download-btn-container {
+            margin-left: auto; /* Push the button to the right */
+            align-self: stretch; /* Stretch to take full width of the container */
+            text-align: right; /* Align button text to the right */
+            
+            background-color: #2a28a7; /* Green background */
+            color: white; /* White text */
+            padding: 1em 1.5em; /* Dynamic padding */
+            border: none; /* No border */
+            border-radius: 25px; /* Curved edges */
+            cursor: pointer; /* Pointer cursor on hover */
+         }
+
+        .location {
+            margin-top: 10px; /* Space between college name and location */
+            color: #212529; /* Bootstrap's default color for text */
+        }
+
+        .accreditation-badge-box {
+            background-color: #e0e0e0; /* Light grey background for the accreditation box */
+            padding: 5px 10px; /* Padding inside the box */
+            margin-top: 10px; /* Space above the box */
+            display: flex;
+             /* Align image and text */
+            margin-top: 20px;
+            margin-right: auto;
+        }
+
+        .accreditation-badge-img {
+            height: 20px; /* Adjust the height of the badge image */
+            margin-right: 5px; /* Space between image and text */
+        }
+
+        .flex-container {
+            display: flex;
+            margin-top: 20px; /* Add space between college-info and the new flex boxes */
+        }
+
+        .left-side {
+            flex: 3; /* The left side takes up more space */
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px; /* Space between the left and right side */
+        }
+
+        .right-side {
+            flex: 2; /* The right side takes up less space */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box {
+            background-color: #f0f0f0; /* Light grey background for visibility */
+            padding: 20px; /* Add some padding inside the boxes */
+            margin-bottom: 10px; /* Add some space between the boxes */
+            border: 1px solid #ccc; /* Add a border for visibility */
+        }
+
+        .box:last-child {
+            margin-bottom: 0; /* Ensuring the last box doesn't have a margin at the bottom */
+        }
+
+        @media (max-width: 768px) {
+            .header-banner, .college-logo, .college-info, .flex-container {
+                padding: 0;
+                margin: 0;
+            }
+
+            .flex-container {
+                flex-direction: column;
+            }
+
+            .left-side, .right-side {
+                flex: none; /* Remove the flex property for mobile */
+                margin-right: 0;
+            }
+
+            .box {
+                margin-bottom: 10px; /* Add space between boxes on mobile */
+            }
+
+            .college-logo {
+                width: 65px; /* Smaller logo on mobile */
+                left: 10px; /* Adjust left position on mobile */
+            }
+
+            .info-wrapper {
+                flex-direction: column; /* Stack elements vertically on smaller screens */
+            }
+        }
+
+        .box_right {
+            margin-top: 10px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            font-size: 16px; /* Increase base font size for all text in the box */
+        }
+
+        .box-heading {
+            font-size: 20px; /* Larger font size for the first line */
+            font-weight: bold; /* Optional: if you want the first line to be bold */
+            margin-bottom: 0.5em; /* Add some spacing below the heading */
+        }
+
+        .box-subheading {
+            font-size: 18px; /* Slightly larger font size for the second line */
+            margin-bottom: 0.5em; /* Add some spacing below the subheading */
+        }
+
+        .box ul {
+            padding-left: 20px; /* Add padding to align list properly */
+        }
+
+        .box li {
+            margin-bottom: 0.25em; /* Add some spacing between list items */
+        }
+
+        .button-container {
+            align-self: flex-end;
+            text-align: right; /* Align the button to the right */
+            padding-right: 20px; /* Add padding to the right to ensure it doesn't stick to the edge */
+            margin-left: auto;
+        }
+
+        .brochure-download-btn {
+            
+            margin-right: auto;
+            
+            color: white; /* White text */
+            padding: 1em 1.5em; /* Dynamic padding */
+            border: none; /* No border */
+            border-radius: 25px; /* Curved edges */
+            font-size: 1em; /* Dynamic font size */
+            cursor: pointer; /* Pointer cursor on hover */
+            display: inline-flex; /* To align icon and text */
+            align-items: center; /* Center items vertically */
+            justify-content: center; /* Center items horizontally */
+            /* Space above the button */
+        }
+
+        .brochure-download-btn i {
+            margin-right: 10px; /* Space between icon and text */
+        }
+
+        /* Adjust button for mobile */
+        @media (max-width: 768px) {
+            .brochure-download-btn {
+                font-size: 0.875em; /* Smaller font size on mobile */
+                padding: 0.8em 1.2em; /* Smaller padding on mobile */
+            }
+        }
+
+        .box {
+    background-color: white; /* Light grey background for visibility */
+    padding: 20px; /* Add some padding inside the boxes */
+    margin-bottom: 4px; /* Add some space between the boxes */
+    border: 3px solid blue; /* Blue border added */
+    border-radius: 20px;
+    border-style: inset;
+}
+
+
+.box_right {
+    margin-top: 10px;
+    background-color: rgb(175, 222, 240);
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 3px solid rgb(76, 76, 161); /* Blue border added */
+    font-size: 16px; /* Increase base font size for all text in the box */
+    border-radius: 20px
+}
+.flex-container1 {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            background-color: #f0f8ff;
+            padding: 5px;
+            margin-left: 5px;
+        }
+        
+    </style>
+</head>
+<body style="margin: 30px;">
+
+<div class="header-banner">
+    {% load static %}
+    <img src="{% static 'c10_logo.png' %}" alt="College Logo" class="college-logo">
+</div>
+
+<div class="college-info">
+    <br>
+    <h4 style="color: rgb(17, 17, 196); font-family: 'Arial', sans-serif; font-size: 1.5em; text-align: center;text-align: center; font-family: 'Verdana', sans-serif; font-size: 1.8em; font-weight: bold;">Indian Institute of Technology Madras (IIT Madras)</h4>
+
+    <div class="location">
+        <span>Chennai, Tamil Nadu, India</span>
+    </div>
+
+    
+</div>
+<div class="flex-container1" style="background-color: white;">
+    <!-- Left Corner -->
+    <div class="accreditation-badge-box" style="background-color: white;">
+        <span style="font-size: 17px;" ><strong>NIRF:1</strong>, NAAC:<strong> "A"</strong> Grade accreditation by NAAC</strong></span> 
+    </div>
+
+    <!-- Right Corner -->
+    <button class="brochure-download-btn-container">
+        <a href="https://research.iitm.ac.in/documents/Admission_Brochure_Jan_23.pdf" class="brochure-download-btn" target="_blank">
+        <i class="fas fa-download"></i> Brochure
+        </a>
+    </button>
+</div>
+
+<div class="flex-container">
+    <div class="left-side">
+        <div style="background-color: #f0f8ff; padding: 10px; border-radius: 10px; margin: 10px 0; font-family: 'Open Sans', sans-serif; font-size: 16px; line-height: 1.6; color: #5858ba;font-weight: bold;">
+           
+            The Indian Institute of Technology Madras is known both nationally and internationally for excellence in technical education, basic and applied research, innovation, entrepreneurship and industrial consultancy. A faculty of international repute, a highly motivated and brilliant student community, excellent technical and supporting staff and an effective administration have all contributed to the pre-eminent status of IIT Madras. The Institute is proud to bear the laureate of being No.1 engineering university in India. More recently, IIT Madras has been given the title of Institute of Eminence.
+           
+        </div>
+        <div style="font-weight: bold;" class="box">
+            Admission to all the B.Tech Programmes for the year 2024 is based on any one of the following:
+
+            Have passed 10+2 from a recognized board with a minimum of 75% marks in aggregate in Physics, Chemistry, and Maths
+            <li>Entrance Examination – Engineering 2024</li>
+            <li>Have cleared the JEE Advanced, a computer-based test conducted by IIT Zonal Coordinators</li>
+        </div>
+    </div>
+    <div class="right-side">
+        <div class="box_right">
+            <p class="box-heading">We are happy that you have found interest at Indian Institute of Technology Madras (IIT Madras).<br> Application for BTech 2024 is open.</p>
+            <p class="box-subheading">B.Tech courses available:</p>
+            <ul>
+                <li>Computer Science Engineering</li>
+                <li> Artificial Intelligence Engineering</li>
+                <li>Electronics and Communication Engineering</li>
+                <li>Electrical and Electronics Engineering</li>
+                <li>Civil Engineering</li>
+                <li>Chemical Engineering</li>
+                <li>Aerospace Engineering</li>
+            </ul>
+        </div>
+        <marquee id="marquee" behavior="scroll" direction="left" style="font-size: 24px; color: #6250ca;font-weight: bold;">ADMISSIONS OPEN FOR 2023-24!!! </marquee>
+
+        
+</div>
+
+</body>
+</html>

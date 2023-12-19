@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramaiah Institute of Technology (RIT)</title>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'logo.png' %}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <style>
+        body {
+            margin: 20px; /* Margin for the entire page */
+        }
+
+        .header-banner {
+            background-image: url('data:image/jpeg;base64,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'); /* Replace with your background image path */
+            background-size: 85%;
+            background-position: 40% 25%;
+            padding: 85px 0; /* Increased padding for a bigger header */
+            position: relative;
+        }
+
+        .header-banner:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+        }
+
+        .college-logo {
+            position: absolute; /* Absolute position */
+            top: 86%; /* Push down to the bottom of the header */
+            left: 20px; /* Slight offset from the left */
+            transform: translateY(-50%); /* Center vertically between sections */
+            width: 120px; /* Fixed width */
+            border-radius: 50%; /* Rounded */
+            overflow: hidden; /* Hide overflow */
+            z-index: 10; /* Above other elements */
+        }
+
+        .college-info {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-items: flex-start; /* Align items to the start of the flex container */
+        }
+
+        .brochure-download-btn-container {
+            margin-left: auto; /* Push the button to the right */
+            align-self: stretch; /* Stretch to take full width of the container */
+            text-align: right; /* Align button text to the right */
+            
+            background-color: #2a28a7; /* Green background */
+            color: white; /* White text */
+            padding: 1em 1.5em; /* Dynamic padding */
+            border: none; /* No border */
+            border-radius: 25px; /* Curved edges */
+            cursor: pointer; /* Pointer cursor on hover */
+         }
+
+        .location {
+            margin-top: 10px; /* Space between college name and location */
+            color: #212529; /* Bootstrap's default color for text */
+        }
+
+        .accreditation-badge-box {
+            background-color: #e0e0e0; /* Light grey background for the accreditation box */
+            padding: 5px 10px; /* Padding inside the box */
+            margin-top: 10px; /* Space above the box */
+            display: flex;
+             /* Align image and text */
+            margin-top: 20px;
+            margin-right: auto;
+        }
+
+        .accreditation-badge-img {
+            height: 20px; /* Adjust the height of the badge image */
+            margin-right: 5px; /* Space between image and text */
+        }
+
+        .flex-container {
+            display: flex;
+            margin-top: 20px; /* Add space between college-info and the new flex boxes */
+        }
+
+        .left-side {
+            flex: 3; /* The left side takes up more space */
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px; /* Space between the left and right side */
+        }
+
+        .right-side {
+            flex: 2; /* The right side takes up less space */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box {
+            background-color: #f0f0f0; /* Light grey background for visibility */
+            padding: 20px; /* Add some padding inside the boxes */
+            margin-bottom: 10px; /* Add some space between the boxes */
+            border: 1px solid #ccc; /* Add a border for visibility */
+        }
+
+        .box:last-child {
+            margin-bottom: 0; /* Ensuring the last box doesn't have a margin at the bottom */
+        }
+
+        @media (max-width: 768px) {
+            .header-banner, .college-logo, .college-info, .flex-container {
+                padding: 0;
+                margin: 0;
+            }
+
+            .flex-container {
+                flex-direction: column;
+            }
+
+            .left-side, .right-side {
+                flex: none; /* Remove the flex property for mobile */
+                margin-right: 0;
+            }
+
+            .box {
+                margin-bottom: 10px; /* Add space between boxes on mobile */
+            }
+
+            .college-logo {
+                width: 65px; /* Smaller logo on mobile */
+                left: 10px; /* Adjust left position on mobile */
+            }
+
+            .info-wrapper {
+                flex-direction: column; /* Stack elements vertically on smaller screens */
+            }
+        }
+
+        .box_right {
+            margin-top: 10px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            font-size: 16px; /* Increase base font size for all text in the box */
+        }
+
+        .box-heading {
+            font-size: 20px; /* Larger font size for the first line */
+            font-weight: bold; /* Optional: if you want the first line to be bold */
+            margin-bottom: 0.5em; /* Add some spacing below the heading */
+        }
+
+        .box-subheading {
+            font-size: 18px; /* Slightly larger font size for the second line */
+            margin-bottom: 0.5em; /* Add some spacing below the subheading */
+        }
+
+        .box ul {
+            padding-left: 20px; /* Add padding to align list properly */
+        }
+
+        .box li {
+            margin-bottom: 0.25em; /* Add some spacing between list items */
+        }
+
+        .button-container {
+            align-self: flex-end;
+            text-align: right; /* Align the button to the right */
+            padding-right: 20px; /* Add padding to the right to ensure it doesn't stick to the edge */
+            margin-left: auto;
+        }
+
+        .brochure-download-btn {
+            
+            margin-right: auto;
+            
+            color: white; /* White text */
+            padding: 1em 1.5em; /* Dynamic padding */
+            border: none; /* No border */
+            border-radius: 25px; /* Curved edges */
+            font-size: 1em; /* Dynamic font size */
+            cursor: pointer; /* Pointer cursor on hover */
+            display: inline-flex; /* To align icon and text */
+            align-items: center; /* Center items vertically */
+            justify-content: center; /* Center items horizontally */
+            /* Space above the button */
+        }
+
+        .brochure-download-btn i {
+            margin-right: 10px; /* Space between icon and text */
+        }
+
+        /* Adjust button for mobile */
+        @media (max-width: 768px) {
+            .brochure-download-btn {
+                font-size: 0.875em; /* Smaller font size on mobile */
+                padding: 0.8em 1.2em; /* Smaller padding on mobile */
+            }
+        }
+
+        .box {
+    background-color: white; /* Light grey background for visibility */
+    padding: 20px; /* Add some padding inside the boxes */
+    margin-bottom: 4px; /* Add some space between the boxes */
+    border: 3px solid blue; /* Blue border added */
+    border-radius: 20px;
+    border-style: inset;
+}
+
+
+.box_right {
+    margin-top: 10px;
+    background-color: rgb(175, 222, 240);
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 3px solid rgb(76, 76, 161); /* Blue border added */
+    font-size: 16px; /* Increase base font size for all text in the box */
+    border-radius: 20px
+}
+.flex-container1 {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            background-color: #f0f8ff;
+            padding: 5px;
+            margin-left: 5px;
+        }
+        
+    </style>
+</head>
+<body style="margin: 30px;">
+
+<div class="header-banner">
+    {% load static %}
+    <img src="{% static 'c5_logo.png' %}" alt="College Logo" class="college-logo">
+</div>
+
+<div class="college-info">
+    <br>
+    <h4 style="color: rgb(17, 17, 196); font-family: 'Arial', sans-serif; font-size: 1.5em; text-align: center;text-align: center; font-family: 'Verdana', sans-serif; font-size: 1.8em; font-weight: bold;">Ramaiah Institute of Technology (RIT)</h4>
+
+    <div class="location">
+        <span>M S R Nagar, Bangalore</span>
+    </div>
+
+    
+</div>
+<div class="flex-container1" style="background-color: white;">
+    <!-- Left Corner -->
+    <div class="accreditation-badge-box" style="background-color: white;">
+        {% load static %}
+        <span style="font-size: 17px;" ><strong>  A+ </strong>NAAC accredited ,NAAC</span> 
+    </div>
+
+    <!-- Right Corner -->
+    <button class="brochure-download-btn-container">
+        <a href="https://www.msrit.edu/admissions.html" class="brochure-download-btn" target="_blank">
+        <i class="fas fa-download"></i> Brochure
+        </a>
+    </button>
+</div>
+
+<div class="flex-container">
+    <div class="left-side">
+        <div style="background-color: #f0f8ff; padding: 10px; border-radius: 10px; margin: 10px 0; font-family: 'Open Sans', sans-serif; font-size: 16px; line-height: 1.6; color: #5858ba;font-weight: bold;">
+
+            Ramaiah Institute of Technology (RIT) is an esteemed engineering college in Bangalore, India. Established in 1962, it's part of the M.S. Ramaiah Foundation and is affiliated with Visvesvaraya Technological University (VTU). The institute offers undergraduate, postgraduate, and doctoral programs in various engineering disciplines, management, computer applications, and more.
+
+            RIT is known for its comprehensive curriculum, modern infrastructure, experienced faculty, and a strong emphasis on research and innovation. The college has collaborations with industry partners, enabling students to gain practical knowledge through internships and projects. Additionally, it has numerous student clubs, societies, and extracurricular activities that contribute to a well-rounded education.
+
+            The campus houses state-of-the-art facilities, including laboratories, libraries, sports complexes, and hostels, providing a conducive environment for learning and personal development. RIT has a strong placement record, with students securing placements in top companies across different sectors.
+
+            </div>
+        <div style="font-weight: bold;" class="box">
+            Admission to all the B.Tech Programmes for the year 2024 is based on any one of the following:
+            
+            A candidate who has passed 10 + 2 pattern of examination (equivalent to the two year Pre University in Karnataka) with Physics and Mathematics as compulsory subjects along with Chemistry/ Biotechnology/ Biology/ Computer Science/ Electronics as optional subjects in the qualifying examination is eligible to pursue an undergraduate degree in engineering at MSRIT.
+            
+            <li>The eligibility for admission is 45% in case of General Category and 40% marks in the qualifying examination in case of SC/ST, Category-1 and OBC Category candidates. The marks obtained by the candidate in Biotechnology/ Biology/ Computer Science/ Electronics in the qualifying examination will be considered in the place of Chemistry in case the marks obtained in Chemistry is less for the required aggregate percentage for the purpose of determination of eligibility (and not for the purpose of determination of rank, in respect of engineering/technology courses).</li>
+            <li>Entrance Exam: KEA / COMEDK</li>
+        </div>
+    </div>
+    <div class="right-side">
+        <div class="box_right">
+            <p class="box-heading">We are happy that you have found interest at Ramaiah Institute of Technology (RIT).<br> Application for BTech 2024 is open.</p>
+            <p class="box-subheading">B.Tech courses available:</p>
+            <ul>
+                <li>B.Tech Computer Science Engineering</li>
+                <li>B.Tech Artificial Intelligence Engineering</li>
+                <li>B.Tech Electronics and Communication Engineering</li>
+                <li>B.Tech Electrical and Electronics Engineering</li>
+                <li>B.Tech Mechanical Engineering</li>
+                <li>Information Science & Engineeringg</li>
+                <li>Industrial Engineering & Management</li>
+                <li>Civil Engineering</li>
+                <li>Biotechnology</li>
+                <li>Medical Electronics Engineering</li>
+            </ul>
+        </div>
+        <marquee id="marquee" behavior="scroll" direction="left" style="font-size: 24px; color: #6250ca;font-weight: bold;">ADMISSIONS OPEN FOR 2023-24!!! </marquee>
+
+        
+</div>
+
+</body>
+</html>
